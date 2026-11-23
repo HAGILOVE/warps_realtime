@@ -1,5 +1,5 @@
 /* WARPS Real-time 웹(PWA) 서비스 워커: 앱 화면은 캐시에서 즉시 열고(빠른 시작·오프라인), 뒤에서 새 버전을 받아 두었다가 알림 */
-const C='warps-v12',A=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
+const C='warps-v14',A=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(A)));self.skipWaiting()});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
 self.addEventListener('fetch',e=>{const u=new URL(e.request.url);if(u.origin!==location.origin||e.request.method!=='GET'||/\/(__warps|hf|cdn)\//.test(u.pathname)||u.searchParams.has('fresh'))return;
