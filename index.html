@@ -275,7 +275,7 @@ body.sub #feedTgt .row{grid-template-columns:minmax(0,1fr) 30px}body.sub #feedTg
 </head>
 <body>
 <header class="top">
-  <div class="brand"><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2"/></svg></span><b>WARPS</b><span class="rt">Real-time</span><small>실시간 통역</small><span class="ver" id="verTag" title="앱 버전">v1.2.7</span></div>
+  <div class="brand"><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2"/></svg></span><b>WARPS</b><span class="rt">Real-time</span><small>실시간 통역</small><span class="ver" id="verTag" title="앱 버전">v1.2.8</span></div>
   <div class="pill" id="livePill"><i></i><span id="stat">대기</span><span id="timer"></span></div>
   <span class="sp top-sp"></span>
   <div class="langs">
@@ -463,7 +463,7 @@ body.sub #feedTgt .row{grid-template-columns:minmax(0,1fr) 30px}body.sub #feedTg
     <div id="testOut"></div>
     <div class="dl">
       <button type="button" id="testBtn" class="ghost">연결 테스트</button>
-      <span class="sp"></span><small class="hint" id="cfgVer" style="margin-right:8px">WARPS Real-time v1.2.7</small>
+      <span class="sp"></span><small class="hint" id="cfgVer" style="margin-right:8px">WARPS Real-time v1.2.8</small>
       <button value="cancel" type="submit" class="ghost">닫기</button>
       <button class="primary" type="submit" value="save">저장</button>
     </div>
@@ -582,7 +582,7 @@ function applyAll(){if(MOBILE){document.body.classList.add('mobile');if(cfg.inpu
 
 const feedSrc=$('#feedSrc'),feedTgt=$('#feedTgt'),feedChat=$('#feedChat'),repliesEl=$('#replies'),FEEDS=[feedSrc,feedTgt,feedChat];
 let running=false,paused=false,rec=null,webTrack=null,displayStream=null,micStream=null,audioCtx=null,wake=null,meterRAF=0;
-let sttNow='web',logs=[],wsErr=[],lastResultAt=0,loudMs=0,lastRms=0,nudged=false,bannerFn=null,PROXY=false;
+let sttNow='web',logs=[],wsErr=[],lastResultAt=0,loudMs=0,lastRms=0,rmsPeak=0,nudged=false,bannerFn=null,PROXY=false;
 let speaker='them',persistT=0,lastThemLang='';const sess={start:0,runMs:0,runStart:0,title:'',who:''};
 let segs=[],segId=0,cur=null,lastFinal={t:0,x:''},curReplies=[],composeItem=null,latSTT='',latTR='',latAI='',trEngUsed='',finalsSinceSum=0,lastSumAt=0;
 
@@ -1101,7 +1101,7 @@ function startWeb(track){const SR=window.SpeechRecognition||window.webkitSpeechR
 
 /* ---------- 로컬 AI 워커 (transformers.js · 모델은 PC 고정 폴더에 1회 저장) ---------- */
 const TJS='3.8.1';
-const APP_VER='1.2.7';
+const APP_VER='1.2.8';
 let LAUNCHER=null,beatT=0,SRV={},mobWarned=false;
 /* 화면(웹 파일) 버전과 설치된 실행기 버전이 다르면 이전 화면이 남아 있는 것 → 경고 */
 /* 창 크기·위치 기억: 다음 실행 때 같은 크기로 열림(설치형) */
@@ -1247,7 +1247,7 @@ let finalsPending=0;
 function maybeInterim(){if(sttNow!=='local'||!cfg.interim||!V.s||asrInflight>0||finalsPending>0)return;
  const now=performance.now(),gap=asrDev==='webgpu'?450:900;if(V.segLen<9600||now-V.lastInt<gap||asrRtf>0.6)return;
  V.lastInt=now;const s=V.s,lang=s.lang==='auto'?(s.detLang||(s.conv?'auto':autoHint())):s.lang,dur=V.segLen;localASR(concat(V.seg),lang,s.conv?pairCands():null).then(m=>{if(lang==='auto'&&m.lang&&!m.err){s.detLang=m.lang;s.detDur=dur}if(s.final||V.s!==s||!m.text||HALL.test(m.text))return;s.wait=false;s.src=m.text;paint(s);interimTr(s)})}
-function flushVad(){if(!V.on)return;const s=V.s,chunks=V.seg,sil=V.sil,len=V.segLen;Object.assign(V,{on:false,seg:[],probs:[],segLen:0,sil:0,s:null});
+function flushVad(){if(!V.on)return;if(V.s)V.s.eng=sttNow;const s=V.s,chunks=V.seg,sil=V.sil,len=V.segLen;Object.assign(V,{on:false,seg:[],probs:[],segLen:0,sil:0,s:null});
  const keep=Math.max(1,chunks.length-Math.max(0,Math.floor((sil-2560)/512)));
  if(len-sil<4000){if(s)dropSeg(s);return}
  transcribeFinal(s,concat(chunks.slice(0,keep)))}
@@ -1265,7 +1265,7 @@ async function groqSTT(pcm,lang,who,prev){if(keyBad(cfg.qKey))throw new Error('G
   const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(`Groq STT ${r.status}: ${(j.error&&j.error.message||'').slice(0,120)}`);return j}
  throw new Error('Groq 요청 한도 초과 — 잠시 후 자동 재개. 계속되면 로컬 AI 사용 권장')}
 function transcribeFinal(s,pcm){if(finalsPending>=4&&!backlogWarned){backlogWarned=true;toast(`인식 처리가 밀리는 중 — ${sttNow==='groq'?'Groq 무료 한도에 걸렸을 수 있음. 잠시 후 자동으로 따라잡음':'설정에서 Whisper Tiny 또는 Groq Whisper(무료 키)를 쓰면 빨라짐'}`)}
- const secs=(pcm.length/16000).toFixed(1),eng=sttNow,who=s.who,lang=s.lang!=='auto'?s.lang:(s.detLang&&s.detDur>=24000)?s.detLang:s.conv?'auto':(finalsPending>=2&&lastThemLang)?lastThemLang:autoHint();finalsPending++;if(s.lang==='auto')autoCount++;
+ const secs=(pcm.length/16000).toFixed(1),eng=s.eng||sttNow,who=s.who,lang=s.lang!=='auto'?s.lang:(s.detLang&&s.detDur>=24000)?s.detLang:s.conv?'auto':(finalsPending>=2&&lastThemLang)?lastThemLang:autoHint();finalsPending++;if(s.lang==='auto')autoCount++;
  s.proc=true;paint(s);const t0=performance.now(),prev=(segs.filter(x=>x.final).slice(-1)[0]||{}).src||'';
  const job=(async()=>{if(eng==='local'){const m=await localASR(pcm,lang,s.conv?pairCands():null);if(m.err)throw new Error('로컬 AI: '+m.err);return {text:m.text,det:m.lang||''}}
   await gSlot();try{const j=await groqSTT(pcm,lang,who,prev);const text=(j.text||'').trim();let det='';if(lang==='auto'){const g=String(j.language||'').toLowerCase();det=WNAME[g]||(g.length<=3?g:'')||scriptLang(text)}return {text,det}}finally{gFree()}})();
@@ -1288,7 +1288,7 @@ async function switchToVad(reason,quiet){if(!running)return;const target=qOk()?'
 
 /* ---------- 레벨 ---------- */
 let lvlT=0,lvlV=0,lvlShown=-1;const lvlEl=$('#lvl'),runEl=$('#run');
-function setLevel(rms){lastRms=rms;lvlV=Math.max(lvlV,Math.min(1,Math.sqrt(rms)*2.6));if(lvlT)return;
+function setLevel(rms){lastRms=rms;if(rms>rmsPeak)rmsPeak=rms;lvlV=Math.max(lvlV,Math.min(1,Math.sqrt(rms)*2.6));if(lvlT)return;
  lvlT=setTimeout(()=>{lvlT=0;const x=lvlV;lvlV=0;if(Math.abs(x-lvlShown)<0.04)return;lvlShown=x;lvlEl.style.width=Math.round(x*100)+'%';runEl.style.setProperty('--lvl',x.toFixed(2))},90)}
 function meter(stream){try{const ctx=audioCtx||(audioCtx=new AudioContext()),an=ctx.createAnalyser();an.fftSize=512;const srcN=ctx.createMediaStreamSource(stream);srcN.connect(an);pitchSetup(ctx,srcN);const d=new Float32Array(an.fftSize);
  const loop=()=>{if(!audioCtx)return;an.getFloatTimeDomainData(d);let s=0;for(const x of d)s+=x*x;setLevel(Math.sqrt(s/d.length));meterRAF=requestAnimationFrame(loop)};loop()}catch(e){}}
@@ -1331,7 +1331,7 @@ function relang(){labels();save();trEngUsed='';trWaited.clear();if(running&&sttN
 /* ---------- 말하기 (누르고 말하기) ---------- */
 function setSpeaker(w){if(w==='me'&&cfg.input==='tab'){toast('탭·시스템 오디오 모드에서는 "말하기"를 쓸 수 없음 — 마이크 모드 사용');return false}
  if(w===speaker)return true;if(V.on&&sttNow!=='web')flushVad();
- const prev=speaker;speaker=w;if(prev==='me'&&w==='them')convExit();const b=$('#meBtn');b.setAttribute('aria-pressed',w==='me');$('#meLbl').textContent=w==='me'?'말하기 중':'말하기';document.body.classList.toggle('meOn',w==='me');
+ const prev=speaker;speaker=w;if(prev==='me'&&w==='them')convExit();const b=$('#meBtn');b.setAttribute('aria-pressed',w==='me');$('#meLbl').textContent=w==='me'?'말하기 중':'말하기';meLblSet();document.body.classList.toggle('meOn',w==='me');
  if(w==='me'){meBatch=[];MSQ.length=0;if(speechSynthesis&&speechSynthesis.speaking){speechSynthesis.cancel()}msBusy=false}
  if(!running){if(w==='me'){start();toast('말하기 — 마이크를 켜고 내 말을 '+L(otherLang()).n+'로 통역함')}return true}
  const web=sttNow==='web'&&rec;
@@ -1347,6 +1347,8 @@ const holding=()=>!!holdAt||spaceHeld;
    이어폰·다른 출력 장치: 마이크를 계속 열어 둔 채 구절 단위로 동시 통역.
    스피커: 말을 멈춘 지점(문장 확정)에서만 읽고, 읽는 동안은 마이크를 잠깐 멈춤(되먹임 방지). */
 let dirTold=false,MSQ=[],msBusy=false,liveT=0,heardAt=0,convActive=false,convFromWeb=false;
+function meLblSet(){const l=$('#meLbl');if(!l)return;const ab=x=>{const n=L(x).n;return /^[A-Za-z]/.test(n)?n.slice(0,2).toUpperCase():n.slice(0,1)};
+ if(speaker!=='me'){l.textContent='말하기';return}l.textContent=convActive?`대화 중 ${ab(myLang())}⇄${ab(otherLang())}`:`말하기 중 ${ab(myLang())}→${ab(otherLang())}`}
 const pairCands=()=>[...new Set([myLang(),otherLang()].filter(x=>x&&x!=='auto').map(x=>L(x).w))];
 function pairOf(det,text){const m=myLang(),o=otherLang();if(det===m||det===o)return det;
  if(o==='auto')return det||m;const sm=scriptShare(text,m),so=scriptShare(text,o);if(scriptKey(m)!==scriptKey(o))return sm>=so?m:o;
@@ -1355,12 +1357,12 @@ function pairOf(det,text){const m=myLang(),o=otherLang();if(det===m||det===o)ret
 async function convEnter(n=0){if(!cfg.conv||cfg.input!=='mic'||convActive||speaker!=='me')return;if(!running||!(sttNow==='web'?rec:audioCtx)){if(n<25)setTimeout(()=>convEnter(n+1),200);return}convActive=true;const o=otherLang();
  if(o==='auto'){toast('대화 모드 — 상대 언어를 지정하면 두 언어를 자동 구분함');}
  log(`대화 모드 켜짐: ${L(myLang()).n} ⇄ ${L(o).n}`);
- if(sttNow==='web'){if(MOBILE&&!qOk()){convActive=false;toast('휴대폰 대화 모드(두 언어 자동 구분)는 무료 Groq 키 필요(설정 › AI) — 지금은 내 말만 번역');return}
-  convFromWeb=true;if(!qOk())toast('대화 모드: 두 언어 자동 구분을 위해 로컬 AI(Whisper 다국어)로 인식 — 처음 한 번 모델을 내려받음. 무료 Groq 키를 넣으면 더 빠름');
+ if(sttNow==='web'){
+  convFromWeb=true;if(!qOk())toast(MOBILE?'대화 모드: 휴대폰 로컬 AI로 두 언어를 구분함 — 처음 한 번 모델(약 80MB)을 내려받고 느림. 무료 Groq 키(설정 › AI)를 넣으면 훨씬 빠름':'대화 모드: 두 언어 자동 구분을 위해 로컬 AI(Whisper 다국어)로 인식 — 처음 한 번 모델을 내려받음. 무료 Groq 키를 넣으면 더 빠름');
   await switchToVad('대화 모드 — 두 언어 자동 구분',true);
-  if(sttNow==='local')asrLoad(modelFor('auto')).catch(e=>{log('대화 모드 로컬 AI 실패: '+e.message);toast('로컬 AI를 불러오지 못해 대화 모드를 끔 — 내 말만 번역');convActive=false;if(convFromWeb&&running){convFromWeb=false;stop();start()}})}
- status(`대화 모드 · ${L(myLang()).n} ⇄ ${L(o).n} 자동 구분`)}
-function convExit(){if(!convActive)return;convActive=false;log('대화 모드 꺼짐');if(convFromWeb&&running&&cfg.input==='mic'){convFromWeb=false;
+  if(sttNow==='local')asrLoad(modelFor('auto')).catch(e=>{log('대화 모드 로컬 AI 실패: '+e.message);toast('로컬 AI를 불러오지 못해 대화 모드를 끔 — 내 말만 번역(무료 Groq 키를 넣으면 대화 모드 가능)');convActive=false;meLblSet();if(convFromWeb&&running){convFromWeb=false;stop();start()}})}
+ status(`대화 모드 · ${L(myLang()).n} ⇄ ${L(o).n} 자동 구분`);meLblSet()}
+function convExit(){if(!convActive)return;convActive=false;meLblSet();log('대화 모드 꺼짐');if(convFromWeb&&running&&cfg.input==='mic'){convFromWeb=false;
  const go=(n=0)=>{if(!running||speaker==='me'||convActive)return;if((finalsPending>0&&n<30)||(V.on&&n<6)){setTimeout(()=>go(n+1),300);return}stop();start();log('대화 모드 종료 → 원래 인식 엔진 복귀')};setTimeout(go,600)}else convFromWeb=false}
 const meLive=()=>speaker==='me'&&!holding()&&!!cfg.meSpeak;
 const isPhoneLbl=l=>!!l&&(PHONE_RE.test(l)||/wired|usb|유선/i.test(l));
@@ -1548,7 +1550,7 @@ document.addEventListener('keydown',e=>{
  else if(e.altKey&&e.key.toLowerCase()==='s'){e.preventDefault();$('#subBtn').click()}
  else if(e.code==='Space'&&!e.repeat&&!editable(e.target)&&!document.querySelector('dialog[open]')){e.preventDefault();if(speaker!=='me'&&setSpeaker('me'))spaceHeld=true}});
 document.addEventListener('keyup',e=>{if(e.code==='Space'&&spaceHeld){e.preventDefault();spaceHeld=false;setTimeout(()=>{setSpeaker('them');setTimeout(()=>speakMine(1),300)},350)}});
-setInterval(()=>{if(running)tick();if(!running||sttNow!=='web'||paused){loudMs=0;return}if(Date.now()-lastResultAt<2500){loudMs=0;return}if(lastRms>0.02)loudMs+=1000;
+setInterval(()=>{if(running)tick();if(!running||sttNow!=='web'||paused){loudMs=0;return}const pk=rmsPeak;rmsPeak=0;if(Date.now()-lastResultAt<2500){loudMs=0;return}if(pk>0.02)loudMs+=1000;
  const tabIn=cfg.input==='tab';if(cfg.stt==='auto'&&loudMs>=(tabIn?6000:10000)&&!nudged){nudged=true;log('watchdog: sound without results → auto switch');if(tabIn){cfg.tabWebBad=true;save()}
   toast(`소리는 들어오는데 Web Speech 결과가 없어 ${qOk()?'Groq Whisper':'로컬 AI'}로 자동 전환함${tabIn?' — 다음부터 탭 오디오는 바로 이 엔진으로 시작':''}`);switchToVad(tabIn?'탭 오디오 Web Speech 무응답':'Web Speech 무응답');return}
  if(loudMs>=8000&&!nudged){nudged=true;log('watchdog: sound without results');banner([`소리는 들어오는데 Web Speech 인식 결과가 8초 넘게 없음 — 상대 언어(${L(cfg.src).n})가 실제 말하는 언어와 같은지 확인. 계속 안 되면 로컬 AI로 전환.`],{label:'로컬 AI로 전환',fn:()=>switchToVad('수동 전환')})}},1000);
