@@ -149,7 +149,7 @@ main[data-view=chat] #paneSrc,main[data-view=chat] #paneTgt,main[data-view=split
 .say{font-size:calc(var(--fs) * .95);font-weight:650;margin:8px 0 4px;line-height:1.45;overflow-wrap:anywhere}
 .pron{margin:-1px 0 5px;color:var(--mute);font-size:12.5px;line-height:1.45;letter-spacing:.01em;overflow-wrap:anywhere}.pron i{font-style:normal;font-size:10.5px;font-weight:650;border:1px solid var(--line2);border-radius:5px;padding:0 4px;margin-right:5px;vertical-align:1px}
 .row.spoken p::after{content:' 🔊';font-size:.8em;opacity:.7}body.meOn .hold{background:var(--live);color:#fff;border-color:var(--live)}body.meOn .hold kbd{background:rgb(255 255 255/.2);color:#fff;border-color:transparent}
-.dcenter{position:relative}.omenu .lrow{display:flex;align-items:center;gap:10px;padding:6px 10px}.omenu .lrow>span{flex:0 0 112px;display:flex;flex-direction:column;line-height:1.25}.omenu .lrow>span i{font-style:normal;white-space:nowrap}.omenu .lbtns button{flex-wrap:wrap}.omenu .lbtns button small{flex-basis:100%;padding-left:28px}.omenu .lrow>span small{opacity:.65;font-size:11px}.omenu .lrow select{flex:1;min-width:0;padding:7px 8px;border-radius:8px}.omenu .lbtns{display:flex;flex-direction:column}.menu.omenu{left:auto;right:0;transform:none;width:min(400px,94vw);min-width:0;max-height:70vh;overflow:auto}.menu.omenu button{align-items:center;text-align:left;white-space:normal;min-height:40px}.menu.omenu button>span:nth-child(2){flex:1;min-width:0;overflow-wrap:anywhere;line-height:1.35}.menu.omenu button small{flex:none;white-space:nowrap;margin-left:8px}.omenu h5{margin:8px 10px 4px;font-size:12px;color:var(--mute);font-weight:700}.omenu button{gap:8px}.omenu button .ck{width:16px;flex:none;color:var(--acc);font-weight:800}.omenu button small{margin-left:auto;color:var(--mute);font-size:11.5px}.omenu .note{font-size:11.5px;color:var(--mute);padding:6px 10px 4px;line-height:1.45}.omenu hr{border:0;border-top:1px solid var(--line);margin:4px 0}
+.dcenter{position:relative}#pocket{position:fixed;inset:0;z-index:99999;background:#000;color:#5a5a5a;display:flex;align-items:center;justify-content:center;text-align:center;touch-action:none;user-select:none;-webkit-user-select:none}#pocket[hidden]{display:none}#pocket .pk-in{max-width:420px;padding:24px;display:flex;flex-direction:column;gap:14px;align-items:center}#pkClock{font-size:44px;font-weight:300;color:#666;letter-spacing:2px}#pkStat{font-size:15px;color:#4a7}#pkStat.off{color:#a65}#pkLast{min-height:3.2em;font-size:17px;line-height:1.5;color:#777;margin:0}#pkUnlock{margin-top:18px;width:150px;height:150px;border-radius:50%;border:2px solid #333;background:transparent;color:#666;font-size:13px;position:relative;overflow:hidden}#pkUnlock i{position:absolute;left:0;bottom:0;width:100%;height:0;background:#1d3a2a}#pkUnlock.hold i{height:100%;transition:height 1.2s linear}#pkUnlock span{position:relative}#pocket small{color:#444;font-size:12px;line-height:1.6}.omenu .lrow{display:flex;align-items:center;gap:10px;padding:6px 10px}.omenu .lrow>span{flex:0 0 112px;display:flex;flex-direction:column;line-height:1.25}.omenu .lrow>span i{font-style:normal;white-space:nowrap}.omenu .lbtns button{flex-wrap:wrap}.omenu .lbtns button small{flex-basis:100%;padding-left:28px}.omenu .lrow>span small{opacity:.65;font-size:11px}.omenu .lrow select{flex:1;min-width:0;padding:7px 8px;border-radius:8px}.omenu .lbtns{display:flex;flex-direction:column}.menu.omenu{left:auto;right:0;transform:none;width:min(400px,94vw);min-width:0;max-height:70vh;overflow:auto}.menu.omenu button{align-items:center;text-align:left;white-space:normal;min-height:40px}.menu.omenu button>span:nth-child(2){flex:1;min-width:0;overflow-wrap:anywhere;line-height:1.35}.menu.omenu button small{flex:none;white-space:nowrap;margin-left:8px}.omenu h5{margin:8px 10px 4px;font-size:12px;color:var(--mute);font-weight:700}.omenu button{gap:8px}.omenu button .ck{width:16px;flex:none;color:var(--acc);font-weight:800}.omenu button small{margin-left:auto;color:var(--mute);font-size:11.5px}.omenu .note{font-size:11.5px;color:var(--mute);padding:6px 10px 4px;line-height:1.45}.omenu hr{border:0;border-top:1px solid var(--line);margin:4px 0}
 .lbtn{display:inline-flex;align-items:center;gap:6px}.lbtn svg{width:17px;height:17px}.lbtn.on{background:var(--accSoft,rgba(58,107,240,.12));color:var(--accSoftInk,var(--acc));border-color:var(--accLine,var(--acc))}.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media(max-width:820px){.lbtn span{display:none}.menu.omenu{position:fixed;left:3vw;right:3vw;bottom:78px;width:auto;max-height:65vh}}
 .sum li.nw{background:var(--accSoft,rgba(58,107,240,.12));border-radius:6px;animation:nwf 2.5s ease-out forwards}@keyframes nwf{0%{background:var(--accSoft,rgba(58,107,240,.25))}100%{background:transparent}}
@@ -275,7 +275,7 @@ body.sub #feedTgt .row{grid-template-columns:minmax(0,1fr) 30px}body.sub #feedTg
 </head>
 <body>
 <header class="top">
-  <div class="brand"><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2"/></svg></span><b>WARPS</b><span class="rt">Real-time</span><small>실시간 통역</small><span class="ver" id="verTag" title="앱 버전">v1.2.8</span></div>
+  <div class="brand"><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2"/></svg></span><b>WARPS</b><span class="rt">Real-time</span><small>실시간 통역</small><span class="ver" id="verTag" title="앱 버전">v1.2.9</span></div>
   <div class="pill" id="livePill"><i></i><span id="stat">대기</span><span id="timer"></span></div>
   <span class="sp top-sp"></span>
   <div class="langs">
@@ -356,6 +356,8 @@ body.sub #feedTgt .row{grid-template-columns:minmax(0,1fr) 30px}body.sub #feedTg
     <button id="minBtn" class="ghost" type="button">회의록</button>
     <button id="moreBtn" class="icon" type="button" aria-label="더 보기" aria-haspopup="true"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/></svg></button>
     <div class="menu" id="moreMenu" hidden>
+      <button type="button" id="pocketBtn">주머니 모드 <kbd>화면 잠금 · 이어폰으로 듣기</kbd></button>
+      <hr>
       <button type="button" id="minBtn2">회의록 만들기·저장</button>
       <button type="button" id="srtBtn">SRT 자막 파일 저장</button>
       <button type="button" id="copyAll">전체 기록 복사</button>
@@ -398,6 +400,7 @@ body.sub #feedTgt .row{grid-template-columns:minmax(0,1fr) 30px}body.sub #feedTg
       </div>
       <div id="lHint" class="lhint" hidden></div>
       <label class="chk"><input id="c_meSpeak" type="checkbox"> 말하기 — 내 말의 번역을 상대 언어 음성으로 자동으로 읽어주기 (말하기 버튼·Space를 떼면 재생)</label>
+      <label class="f" id="nInRow" hidden><span>앱 — 어떤 소리를 통역할지</span><select id="n_in"><option value="phone">휴대폰 마이크 (테이블 위·고음질 유지)</option><option value="bt">이어폰 마이크 (주머니 속 · 블루투스는 통화 음질로 바뀜)</option><option value="internal">이 휴대폰에서 나는 소리 (영상·유튜브 — 마이크 불필요)</option></select></label>
       <label class="chk"><input id="c_conv" type="checkbox"> 대화 모드 — 말하기를 짧게 눌러 켜면 두 언어를 자동 구분: 상대 언어는 내 언어로, 내 언어는 상대 언어로 번역(+읽기). 꾹 누르는 말하기는 내 말만</label>
       <label class="f"><span>말하기 — 내가 말하는 언어</span><select id="c_myLang"><option value="auto">자동</option><option value="src">상대 칸</option><option value="tgt">나 칸</option></select></label>
       <label class="f"><span>읽어주기 목소리</span><select id="c_voice"><option value="auto">자동 — 내 목소리 높낮이로 남성/여성 판별 (권장)</option><option value="m">항상 남성</option><option value="f">항상 여성</option></select></label>
@@ -463,7 +466,7 @@ body.sub #feedTgt .row{grid-template-columns:minmax(0,1fr) 30px}body.sub #feedTg
     <div id="testOut"></div>
     <div class="dl">
       <button type="button" id="testBtn" class="ghost">연결 테스트</button>
-      <span class="sp"></span><small class="hint" id="cfgVer" style="margin-right:8px">WARPS Real-time v1.2.8</small>
+      <span class="sp"></span><small class="hint" id="cfgVer" style="margin-right:8px">WARPS Real-time v1.2.9</small>
       <button value="cancel" type="submit" class="ghost">닫기</button>
       <button class="primary" type="submit" value="save">저장</button>
     </div>
@@ -537,6 +540,7 @@ body.sub #feedTgt .row{grid-template-columns:minmax(0,1fr) 30px}body.sub #feedTg
     <div class="dl"><button value="close" type="submit" class="primary">확인</button></div>
   </form>
 </dialog>
+<div id="pocket" hidden><div class="pk-in"><div id="pkClock"></div><div id="pkStat"></div><p id="pkLast"></p><button id="pkUnlock" type="button"><i></i><span>길게 눌러<br>잠금 해제</span></button><small id="pkHint">이어폰 버튼 — 1번: 일시정지/재개 · 2번: 대화 모드 · 3번: 방금 문장 다시 듣기<br>화면 밝기를 낮추면 배터리가 오래 감</small></div></div>
 <div id="toast" role="status"><span></span><button type="button" hidden></button></div>
 
 <script>
@@ -974,19 +978,19 @@ function pickVoice(bcp,sex){const vs=speechSynthesis.getVoices(),lc=bcp.toLowerC
    밀리면 속도를 올리고, 10초 넘게 지난 문장은 건너뛰어 실시간을 유지. */
 let phones='',phoneLbl='',LSQ=[],lsBusy=false,lsWarned=false;
 const PHONE_RE=/headphone|headset|earphone|earbud|airpods|buds|bluetooth|hands-?free|헤드폰|헤드셋|이어폰|핸즈프리|블루투스/i;
-async function detectPhones(){try{if(!navigator.mediaDevices||!navigator.mediaDevices.enumerateDevices)return;const ds=(await navigator.mediaDevices.enumerateDevices()).filter(d=>d.kind==='audiooutput');
+async function detectPhones(){if(self.WarpsNative){try{const was=phones;phones=WarpsNative.headset()?'yes':'no';if(was!==phones){log('앱: 이어폰 '+(phones==='yes'?'연결됨':'없음'));listenUI()}}catch(_){}return}try{if(!navigator.mediaDevices||!navigator.mediaDevices.enumerateDevices)return;const ds=(await navigator.mediaDevices.enumerateDevices()).filter(d=>d.kind==='audiooutput');
  const d=ds.find(d=>d.deviceId==='default')||ds[0];let lbl=d&&d.label||'';
  if(!ds.length){const ins=(await navigator.mediaDevices.enumerateDevices()).filter(x=>x.kind==='audioinput'&&x.label);const h=ins.find(x=>PHONE_RE.test(x.label)||/wired|usb|유선/i.test(x.label));lbl=h?h.label:(ins.length?'휴대폰 스피커':'')}
  const was=phones;phoneLbl=lbl;phones=lbl?(PHONE_RE.test(lbl)||/wired|usb|유선/i.test(lbl)?'yes':'no'):'';
  if(phones==='yes'&&was!=='yes'&&cfg.listen==='auto'&&running)toast('이어폰 연결됨 — 상대 말의 번역을 이어폰으로 들려줌');listenUI()}catch(e){}}
-const listenActive=()=>cfg.listen==='on'||(cfg.listen==='auto'&&phones==='yes');
+const listenActive=()=>pocket||cfg.listen==='on'||(cfg.listen==='auto'&&phones==='yes');
 function listenUI(){const b=$('#listenBtn');if(b){const on=listenActive();b.classList.toggle('on',on);b.setAttribute('aria-pressed',on);b.title=on?`듣기 켜짐 → ${cfg.listen==='on'?devLabel('listenDev'):'자동(이어폰)'} — 눌러서 장치 선택`:'눌러서 듣기 출력 장치 선택';const sp=b.querySelector('span');if(sp)sp.textContent=on&&cfg.listen==='on'&&cfg.listenDev?'듣기·장치':'듣기'}
  const el=$('#phoneInfo');if(el)el.textContent=phoneLbl?`현재 출력 장치: ${phoneLbl.replace(/^(Default|기본값)\s*-\s*/,'')}${phones==='yes'?' — 이어폰으로 인식됨':' — 스피커로 인식됨'}`:'출력 장치 이름은 마이크 권한을 허용한 뒤 확인됨'}
 function sexOfSeg(x){if(x.f0)themSex=x.f0<F0CUT?'m':'f';return themSex}
 function listenSay(x){if(!x||x.said||x.who==='me'||x.tts||!listenActive())return;clearTimeout(x.lsT);const t=x.tgt;if(!t||t==='(번역 실패)')return;x.said=true;listenPush(t,sexOfSeg(x),dirOf(x)[1])}
 function listenPush(text,sex,lang){LSQ.push({text,sex,lang,t:Date.now()});if(!lsWarned&&cfg.input==='mic'&&phones!=='yes'){lsWarned=true;toast('스피커로 들으면 마이크가 번역 음성을 다시 받아 적을 수 있음 — 이어폰 권장')}listenNext()}
 function listenNext(){if(lsBusy||!LSQ.length)return;if(!('speechSynthesis' in self)&&!(cfg.listenDev&&canSink()))return;if(speechSynthesis.speaking&&!lsBusy){setTimeout(listenNext,300);return}
- const now=Date.now();while(LSQ.length>1&&now-LSQ[0].t>10000)LSQ.shift();const it=LSQ.shift(),bcp=L(it.lang||listenLang()).sp;
+ const now=Date.now();while(LSQ.length>1&&now-LSQ[0].t>10000)LSQ.shift();const it=LSQ.shift(),bcp=L(it.lang||listenLang()).sp;if(!it.rep){lastHeard={text:it.text,sex:it.sex,lang:it.lang};if(pocket){const pl=$('#pkLast');if(pl)pl.textContent=it.text}}
  if(cfg.listen==='on'&&cfg.listenDev&&canSink()&&!it.def){lsBusy=true;playOnDevice(cfg.listenDev,it.text,bcp,Math.min(1.6,(+cfg.lRate||1.15)+(LSQ.length>=2?0.25:0))).catch(e=>{log('listen device: '+e.message);toast('선택한 장치로 재생 실패 — 이번 문장은 기본 출력으로');it.def=true;LSQ.unshift(it)}).finally(()=>{lsBusy=false;setTimeout(listenNext,60)});return}
  const u=new SpeechSynthesisUtterance(it.text);u.lang=bcp;
  const pv=pickVoice(bcp,it.sex);if(pv.v)u.voice=pv.v;u.pitch=pv.pitch;u.rate=Math.min(1.6,(+cfg.lRate||1.15)+(LSQ.length>=2?0.25:LSQ.length?0.1:0));
@@ -1056,7 +1060,7 @@ function gateStart(text){ttsRecent.push({t:Date.now(),x:normTxt(text)});ttsRecen
 function gateEnd(){if(!gateOn)return;gateOn=false;gateUntil=Date.now()+700}
 const gated=()=>gateOn||Date.now()<gateUntil;
 const normTxt=t=>String(t||'').toLowerCase().replace(/[\p{P}\p{S}\s]+/gu,'');
-function holdInput(on){paused=on;if(sttNow!=='web')return;if(on){if(rec){try{rec.abort()}catch(e){}}}else if(running){try{startWeb(webTrack)}catch(e){toast(e.message)}}}
+function holdInput(on){if(!on&&pkPaused)return;paused=on;if(sttNow!=='web')return;if(on){if(rec){try{rec.abort()}catch(e){}}}else if(running){try{startWeb(webTrack)}catch(e){toast(e.message)}}}
 
 /* ---------- STT: Web Speech ---------- */
 /* 긴 발화: 연속 두 번 동일하게 나온 앞부분(LocalAgreement 방식)을 먼저 확정·번역 */
@@ -1101,7 +1105,7 @@ function startWeb(track){const SR=window.SpeechRecognition||window.webkitSpeechR
 
 /* ---------- 로컬 AI 워커 (transformers.js · 모델은 PC 고정 폴더에 1회 저장) ---------- */
 const TJS='3.8.1';
-const APP_VER='1.2.8';
+const APP_VER='1.2.9';
 let LAUNCHER=null,beatT=0,SRV={},mobWarned=false;
 /* 화면(웹 파일) 버전과 설치된 실행기 버전이 다르면 이전 화면이 남아 있는 것 → 경고 */
 /* 창 크기·위치 기억: 다음 실행 때 같은 크기로 열림(설치형) */
@@ -1473,6 +1477,48 @@ async function testAll(){readCfg();const o=$('#testOut'),out=[];o.textContent='�
 /* ---------- 이벤트 ---------- */
 applyAll();if(hasLLM())repliesEl.innerHTML='<p class="hint">상대가 말하면 바로 답변 후보를 추천함. 카드의 스피커 버튼으로 상대 언어로 읽어줄 수 있음.</p>';setRunUI(false);
 $('#syncChk').checked=cfg.sync;$('#sumAuto').checked=cfg.sumAuto;
+/* ---------- 주머니 모드 ----------
+   휴대폰을 주머니에 넣고 이어폰으로만 통역을 듣는 모드. 검은 잠금 화면(터치 오작동 방지) + 화면 켜짐 유지 + 듣기 강제 켬.
+   이어폰 버튼(Media Session): 재생/일시정지=통역 일시정지·재개, 다음 곡=대화 모드, 이전 곡=방금 문장 다시 듣기.
+   Android 앱(WarpsNative)에서는 화면이 꺼져도 동작하고 버튼·알림 조작을 네이티브가 전달함(self.WARPS.act). */
+let pocket=false,pkPaused=false,pkAudio=null,lastHeard=null,pkClockT=0;
+const NATIVE=!!self.WarpsNative;
+function pkSilence(){const n=8000,b=new ArrayBuffer(44+n),v=new DataView(b),w=(o,t)=>[...t].forEach((c,i)=>v.setUint8(o+i,c.charCodeAt(0)));w(0,'RIFF');v.setUint32(4,36+n,true);w(8,'WAVEfmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,8000,true);v.setUint32(28,8000,true);v.setUint16(32,1,true);v.setUint16(34,8,true);w(36,'data');v.setUint32(40,n,true);new Uint8Array(b,44).fill(128);return URL.createObjectURL(new Blob([b],{type:'audio/wav'}))}
+function pkSay(t){try{if(!('speechSynthesis' in self))return;ttsRecent.push({t:Date.now(),x:normTxt(t)});const u=new SpeechSynthesisUtterance(t);u.lang='ko-KR';u.rate=1.15;speechSynthesis.speak(u)}catch(_){}}
+function pkUI(){const d=new Date(),c=$('#pkClock');if(c)c.textContent=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
+ const st=$('#pkStat');if(st){const off=!running||pkPaused;st.classList.toggle('off',off);st.textContent=!running?'정지됨':pkPaused?'일시정지 — 이어폰 버튼 1번으로 재개':convActive?`대화 모드 · ${L(myLang()).n} ⇄ ${L(otherLang()).n}`:speaker==='me'?`말하기 · ${L(myLang()).n} → ${L(otherLang()).n}`:`통역 중 · ${L(srcNow()).n} → ${L(cfg.tgt).n}`}
+ try{if(navigator.mediaSession&&pocket&&!NATIVE)navigator.mediaSession.playbackState=pkPaused?'paused':'playing'}catch(_){}
+ try{if(NATIVE)WarpsNative.state(JSON.stringify({running,paused:pkPaused,pocket,talk:speaker==='me',conv:convActive,dir:`${L(srcNow()).n} → ${L(cfg.tgt).n}`}))}catch(_){}}
+function pkAct(a){if(!running){if(a==='toggle'||a==='play')pkSay('통역이 꺼져 있음');return}
+ if(a==='toggle'||a==='pause'||a==='play'){pkPaused=a==='toggle'?!pkPaused:a==='pause';
+  if(pkPaused){LSQ.length=0;MSQ.length=0;try{speechSynthesis.cancel()}catch(_){}lsBusy=false;msBusy=false;try{stopDeviceAudio()}catch(_){}paused=true;if(sttNow==='web'&&rec){try{rec.abort()}catch(_){}}pkSay('통역 일시정지')}
+  else{pkSay('통역 재개');setTimeout(()=>{if(!pkPaused)holdInput(false)},900)}log('주머니: '+(pkPaused?'일시정지':'재개'))}
+ else if(a==='talk'){const on=speaker!=='me';if(setSpeaker(on?'me':'them')&&on)convEnter();pkSay(on?'대화 모드':'듣기 모드')}
+ else if(a==='repeat'){if(lastHeard){LSQ.unshift({...lastHeard,t:Date.now(),rep:true});listenNext()}else pkSay('다시 들을 문장이 없음')}
+ else if(a==='sum'){const t=SUM?[SUM.headline,...(SUM.points||[])].filter(Boolean).join('. '):'';if(t){LSQ.unshift({text:'요약. '+t,sex:themSex,lang:cfg.tgt,t:Date.now(),rep:true});listenNext()}else pkSay('아직 요약이 없음')}
+ pkUI()}
+function pkMedia(on){const ms=navigator.mediaSession;if(!ms)return;const set=(a,f)=>{try{ms.setActionHandler(a,f)}catch(_){}};
+ if(on){try{ms.metadata=new MediaMetadata({title:'WARPS 실시간 통역',artist:'주머니 모드',album:'WARPS Real-time'})}catch(_){}
+  set('play',()=>pkAct('toggle'));set('pause',()=>pkAct('toggle'));set('nexttrack',()=>pkAct('talk'));set('previoustrack',()=>pkAct('repeat'));set('stop',()=>pkAct('pause'))}
+ else ['play','pause','nexttrack','previoustrack','stop'].forEach(a=>set(a,null));
+ try{ms.playbackState=on?'playing':'none'}catch(_){}}
+async function pocketOn(){if(pocket)return;$('#moreMenu').hidden=true;
+ if(!NATIVE){try{if(!pkAudio){pkAudio=new Audio(pkSilence());pkAudio.loop=true}await pkAudio.play()}catch(e){log('pocket audio: '+e.message)}}
+ unlockTTS();if(!running){try{await start()}catch(_){}if(!running){toast('주머니 모드: 먼저 마이크를 허용하고 시작해야 함');try{pkAudio&&pkAudio.pause()}catch(_){}return}}
+ pocket=true;pkPaused=false;$('#pkLast').textContent='';$('#pocket').hidden=false;listenUI();lockScreen();
+ try{await document.documentElement.requestFullscreen({navigationUI:'hide'})}catch(_){}
+ if(NATIVE){$('#pkHint').innerHTML='화면을 꺼도 통역이 계속됨 · 알림 창에서도 조작 가능<br>이어폰 버튼 — 1번: 일시정지/재개 · 2번: 대화 모드 · 3번: 다시 듣기'}else pkMedia(true);
+ pkUI();clearInterval(pkClockT);pkClockT=setInterval(pkUI,5000);log('주머니 모드 켜짐');pkSay('주머니 모드. 통역을 시작합니다')}
+function pocketOff(){if(!pocket)return;pocket=false;$('#pocket').hidden=true;clearInterval(pkClockT);try{pkAudio&&pkAudio.pause()}catch(_){}if(!NATIVE)pkMedia(false);
+ if(pkPaused){pkPaused=false;holdInput(false)}try{if(document.fullscreenElement)document.exitFullscreen()}catch(_){}
+ listenUI();if(!listenActive()){LSQ.length=0}pkUI();log('주머니 모드 꺼짐')}
+{const b=$('#pkUnlock');let t=0;const up=()=>{clearTimeout(t);b.classList.remove('hold')};
+ b.addEventListener('pointerdown',e=>{e.preventDefault();b.classList.add('hold');clearTimeout(t);t=setTimeout(()=>{up();pocketOff()},1200)});
+ ['pointerup','pointercancel','pointerleave'].forEach(n=>b.addEventListener(n,up));
+ $('#pocket').addEventListener('contextmenu',e=>e.preventDefault());$('#pocketBtn').onclick=()=>pocketOn()}
+if(NATIVE){setInterval(pkUI,3000);const r=$('#nInRow'),sel=$('#n_in');r.hidden=false;try{sel.value=localStorage.getItem('warps.nin')||'phone'}catch(_){}
+ sel.onchange=()=>{try{localStorage.setItem('warps.nin',sel.value)}catch(_){}micStream=null;toast('입력: '+sel.options[sel.selectedIndex].text.split(' (')[0]+(running?' — 다시 시작함':''));if(running){stop();setTimeout(()=>start(),400)}}}
+self.WARPS={stop:()=>{if(pocket)pocketOff();if(running)stop()},devs:detectPhones,toast:m=>toast(m),log:m=>log(m),act:pkAct,pocketOn,pocketOff,state:()=>({running,paused:pkPaused,pocket,talk:speaker==='me'})};
 let ttsUnlocked=false;function unlockTTS(){if(ttsUnlocked||!('speechSynthesis' in self))return;ttsUnlocked=true;try{const u=new SpeechSynthesisUtterance(' ');u.volume=0;speechSynthesis.speak(u)}catch(_){}}
 $('#run').onclick=()=>{unlockTTS();if(running){stop();if(segs.filter(s=>s.final).length>=3)banner(['정지함 — 지금까지 내용을 회의록으로 정리해 .txt로 저장할 수 있음.'],{label:'회의록 만들기',fn:openMinutes})}else start()};
 $('#srcLang').onchange=e=>{cfg.src=e.target.value;relang()};
@@ -1563,7 +1609,7 @@ matchMedia('(prefers-color-scheme: dark)').addEventListener('change',applyTheme)
  FEEDS.forEach(f=>f.scrollTop=0);$$('.jump').forEach(j=>j.hidden=true);tick();
  setTimeout(()=>banner([`이전 세션 기록 ${sv.segs.length}건을 복원함 — 이어서 진행하거나 새로 시작할 수 있음.`],{label:'새 세션 시작',fn:()=>newSession(false)}),50)}}
 detectProxy().then(async()=>{if(await loadServerCfg())applyAll();else engLabel();$('#cfgWhere').textContent=PROXY?'설정은 PC에 자동 저장됨 (%LOCALAPPDATA%\\WARPS-Realtime\\settings.json) — 업데이트·재설치해도 유지':'설정은 이 브라우저에 저장됨 (start_windows.bat로 실행하면 PC 파일에도 저장)'});
-if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)){if(/^(localhost|127\.0\.0\.1)$/.test(location.hostname))navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.unregister())).catch(()=>{});else{navigator.serviceWorker.register('sw.js').catch(()=>{});navigator.serviceWorker.addEventListener('message',e=>{if(e.data&&e.data.t==='update')webUpdateCheck()});setTimeout(webUpdateCheck,4000);setInterval(webUpdateCheck,30*60000)}}
+if('serviceWorker' in navigator&&!self.WarpsNative&&/^https?:$/.test(location.protocol)){if(/^(localhost|127\.0\.0\.1)$/.test(location.hostname))navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.unregister())).catch(()=>{});else{navigator.serviceWorker.register('sw.js').catch(()=>{});navigator.serviceWorker.addEventListener('message',e=>{if(e.data&&e.data.t==='update')webUpdateCheck()});setTimeout(webUpdateCheck,4000);setInterval(webUpdateCheck,30*60000)}}
 /* 웹판 새 버전 확인: 서버의 index.html 버전과 비교 → 새 화면을 캐시에 넣어 두고 새로고침 안내 */
 let updShown=false;async function webUpdateCheck(){if(updShown||LAUNCHER||!navigator.onLine)return;try{const r=await fetch('./index.html?fresh='+Date.now(),{cache:'no-store'});if(!r.ok)return;const t=await r.clone().text(),m=t.match(/verTag[^>]*>v([\d.]+)/);if(!m||m[1]===APP_VER)return;
  const k=(await caches.keys()).find(x=>/^warps-/.test(x));if(k){const c=await caches.open(k);await c.put('./index.html',new Response(t,{headers:{'Content-Type':'text/html; charset=utf-8'}}))}
