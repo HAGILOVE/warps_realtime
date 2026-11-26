@@ -275,7 +275,7 @@ body.sub #feedTgt .row{grid-template-columns:minmax(0,1fr) 30px}body.sub #feedTg
 </head>
 <body>
 <header class="top">
-  <div class="brand"><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2"/></svg></span><b>WARPS</b><span class="rt">Real-time</span><small>실시간 통역</small><span class="ver" id="verTag" title="앱 버전">v1.2.11</span></div>
+  <div class="brand"><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2"/></svg></span><b>WARPS</b><span class="rt">Real-time</span><small>실시간 통역</small><span class="ver" id="verTag" title="앱 버전">v1.2.12</span></div>
   <div class="pill" id="livePill"><i></i><span id="stat">대기</span><span id="timer"></span></div>
   <span class="sp top-sp"></span>
   <div class="langs">
@@ -467,7 +467,7 @@ body.sub #feedTgt .row{grid-template-columns:minmax(0,1fr) 30px}body.sub #feedTg
     <div id="testOut"></div>
     <div class="dl">
       <button type="button" id="testBtn" class="ghost">연결 테스트</button>
-      <span class="sp"></span><small class="hint" id="cfgVer" style="margin-right:8px">WARPS Real-time v1.2.11</small>
+      <span class="sp"></span><small class="hint" id="cfgVer" style="margin-right:8px">WARPS Real-time v1.2.12</small>
       <button value="cancel" type="submit" class="ghost">닫기</button>
       <button class="primary" type="submit" value="save">저장</button>
     </div>
@@ -1114,7 +1114,7 @@ function startWeb(track){const SR=window.SpeechRecognition||window.webkitSpeechR
 
 /* ---------- 로컬 AI 워커 (transformers.js · 모델은 PC 고정 폴더에 1회 저장) ---------- */
 const TJS='3.8.1';
-const APP_VER='1.2.11';
+const APP_VER='1.2.12';
 let LAUNCHER=null,beatT=0,SRV={},mobWarned=false;
 /* 화면(웹 파일) 버전과 설치된 실행기 버전이 다르면 이전 화면이 남아 있는 것 → 경고 */
 /* 창 크기·위치 기억: 다음 실행 때 같은 크기로 열림(설치형) */
@@ -1217,7 +1217,9 @@ function vadInit(){if(vadTried)return;vadTried=true;try{vadW=mkWorker(VAD_WORKER
 
 /* ---------- VAD 분할 파이프라인 (Silero VAD + 실시간 중간 인식) ---------- */
 const WORKLET="class Tap extends AudioWorkletProcessor{process(i){const c=i[0]&&i[0][0];if(c)this.port.postMessage(c.slice(0));return true}}registerProcessor('tap',Tap)";
-const HALL=/^(?:[\p{P}\p{S}\s]*|you\.?|bye\.?|thank you\.?|thanks for watching!?\.?|thank you for watching\.?|please subscribe\.?|구독과 좋아요.*|시청해\s?주셔서 감사합니다\.?|MBC 뉴스.*|ご視聴ありがとうございました。?|字幕由.*|謝謝觀看.*|продолжение следует\.*|субтитры.*|\[[^\]]*\]|\([^)]*\)|♪.*)$/iu;
+/* Whisper 환각 문구 — 음악·무음·효과음에서 학습 데이터의 자막 크레디트를 지어냄 */
+const HALL_IN=/中文字幕|字幕志愿者|字幕志願者|李宗盛|明镜与点点|明鏡與點點|点点栏目|請不吝|请不吝|點贊訂閱|点赞订阅|字幕由|字幕提供|Amara\.org|ご視聴ありがとうございま|チャンネル登録|시청해\s?주셔서\s?감사|구독과\s?좋아요|자막\s?제공|Subtitles by|Transcribed by|Translated by|thanks for watching|thank you for watching|please subscribe|like and subscribe/iu;
+const HALL=/^(?:谢谢观看.*|謝謝收看.*|感谢观看.*|感謝收看.*|ご清聴.*|[\p{P}\p{S}\s]*|you\.?|bye\.?|thank you\.?|thanks for watching!?\.?|thank you for watching\.?|please subscribe\.?|구독과 좋아요.*|시청해\s?주셔서 감사합니다\.?|MBC 뉴스.*|ご視聴ありがとうございました。?|字幕由.*|謝謝觀看.*|продолжение следует\.*|субтитры.*|\[[^\]]*\]|\([^)]*\)|♪.*)$/iu;
 const V={probs:[],pprev:[],on:false,seg:[],segLen:0,sil:0,prev:[],s:null,lastInt:0,rsQ:new Float32Array(0),rsPos:0,fb:new Float32Array(512),fbN:0,pend:[],noise:0.004};
 function resetV(){Object.assign(V,{skip:false,probs:[],pprev:[],on:false,seg:[],segLen:0,sil:0,prev:[],s:null,lastInt:0,rsQ:new Float32Array(0),rsPos:0,fbN:0,pend:[]});if(vadW&&vadReady)vadW.postMessage({t:'reset'})}
 async function startVad(stream){
@@ -1250,7 +1252,7 @@ function vadStep(buf,p){if(!running)return;const speech=p>0.3||(V.on&&p>=0.1);
  V.seg.push(buf);V.probs.push(p);V.segLen+=512;if(speech)V.sil=0;else V.sil+=512;
  /* 긴 발화일수록 짧은 숨 고르기에서도 끊어 바로 처리 → 다 듣고 나서 번역하는 지연 제거 */
  const secs=V.segLen/16000,base=Math.max(250,+cfg.sil||450),silMs=secs<2.5?base:secs<5?Math.min(base,300):Math.min(base,200);
- const maxSec=(sttNow==='local'?(asrDev==='webgpu'?7:5.5):(cfg.fast!==false?5.5:8))*(NOSP(V.s?langOfSeg(V.s):speakLang())?0.75:1);
+ const maxSec=(sttNow==='local'?(asrDev==='webgpu'?7:5.5):8)*(NOSP(V.s?langOfSeg(V.s):speakLang())?0.75:1);
  if(V.sil>=silMs*16*(vadReady?1:1.4)){flushVad();return}
  if(secs>=maxSec){cutVad();return}
  maybeInterim()}
@@ -1264,9 +1266,10 @@ let finalsPending=0,lagDrop=0;
 function maybeInterim(){if(sttNow!=='local'||!cfg.interim||!V.s||asrInflight>0||finalsPending>0)return;
  const now=performance.now(),gap=asrDev==='webgpu'?450:900;if(V.segLen<9600||now-V.lastInt<gap||asrRtf>0.6)return;
  V.lastInt=now;const s=V.s,lang=s.lang==='auto'?(s.detLang||(s.conv?'auto':autoHint())):s.lang,dur=V.segLen;localASR(concat(V.seg),lang,s.conv?pairCands():null).then(m=>{if(lang==='auto'&&m.lang&&!m.err){s.detLang=m.lang;s.detDur=dur}if(s.final||V.s!==s||!m.text||HALL.test(m.text))return;s.wait=false;s.src=m.text;paint(s);interimTr(s)})}
-function flushVad(){if(!V.on)return;if(V.s)V.s.eng=sttNow;const s=V.s,chunks=V.seg,sil=V.sil,len=V.segLen;Object.assign(V,{on:false,seg:[],probs:[],segLen:0,sil:0,s:null});
+function flushVad(){if(!V.on)return;if(V.s)V.s.eng=sttNow;const s=V.s,chunks=V.seg,sil=V.sil,len=V.segLen,strong=vadReady?V.probs.filter(p=>p>0.6).length:99;Object.assign(V,{on:false,seg:[],probs:[],segLen:0,sil:0,s:null});
  const keep=Math.max(1,chunks.length-Math.max(0,Math.floor((sil-2560)/512)));
  if(len-sil<4000){if(s)dropSeg(s);return}
+ if(strong<6){log(`VAD: 말소리 확신 구간 부족(${strong}프레임) → 건너뜀`);if(s)dropSeg(s);return}
  transcribeFinal(s,concat(chunks.slice(0,keep)))}
 let finQ=Promise.resolve(),gAct=0;const gWait=[];
 let backlogWarned=false,stickyN=0,autoCount=0;
@@ -1274,7 +1277,7 @@ let backlogWarned=false,stickyN=0,autoCount=0;
 function autoHint(){if(cfg.src!=='auto'||!lastThemLang)return 'auto';return stickyN>=2&&autoCount%3!==0?lastThemLang:'auto'}
 const gSlot=()=>new Promise(r=>{if(gAct<2){gAct++;r()}else gWait.push(r)}),gFree=()=>{const n=gWait.shift();if(n)n();else gAct--};
 async function groqSTT(pcm,lang,who,prev){if(keyBad(cfg.qKey))throw new Error('Groq API 키 형식 오류 — 설정에서 다시 입력');
- for(let at=0;at<4;at++){const fd=new FormData();fd.append('file',toWav(pcm,16000),'a.wav');fd.append('model',cfg.qStt.trim());if(lang!=='auto')fd.append('language',L(lang).w);fd.append('response_format',lang==='auto'?'verbose_json':'json');fd.append('temperature','0');
+ for(let at=0;at<4;at++){const fd=new FormData();fd.append('file',toWav(pcm,16000),'a.wav');fd.append('model',cfg.qStt.trim());if(lang!=='auto')fd.append('language',L(lang).w);fd.append('response_format','verbose_json');fd.append('temperature','0');
   const terms=glossPairs().map(p=>(who==='me'?myLang():srcNow())===cfg.tgt?p[1]:p[0]).join(', '),pr=((terms?terms+'. ':'')+prev).slice(-220);if(pr)fd.append('prompt',pr);
   let r;try{r=await fetchT('https://api.groq.com/openai/v1/audio/transcriptions',{method:'POST',headers:{Authorization:'Bearer '+cfg.qKey},body:fd},15000)}
   catch(e){log('groq '+(e.name==='AbortError'?'timeout':'network')+' (retry)');if(at<1)continue;throw new Error(e.name==='AbortError'?'Groq 응답 지연(15초 초과) — 건너뜀':'Groq 연결 실패')}
@@ -1285,13 +1288,14 @@ function transcribeFinal(s,pcm){if((s.eng||sttNow)==='local'&&finalsPending>=3){
  const secs=(pcm.length/16000).toFixed(1),eng=s.eng||sttNow,who=s.who,lang=s.lang!=='auto'?s.lang:(s.detLang&&s.detDur>=24000)?s.detLang:s.conv?'auto':(finalsPending>=2&&lastThemLang)?lastThemLang:autoHint();finalsPending++;if(s.lang==='auto')autoCount++;
  s.proc=true;paint(s);const t0=performance.now(),prev=(segs.filter(x=>x.final).slice(-1)[0]||{}).src||'';
  const job=(async()=>{if(eng==='local'){const m=await localASR(pcm,lang,s.conv?pairCands():null);if(m.err)throw new Error('로컬 AI: '+m.err);return {text:m.text,det:m.lang||''}}
-  await gSlot();try{const j=await groqSTT(pcm,lang,who,prev);const text=(j.text||'').trim();let det='';if(lang==='auto'){const g=String(j.language||'').toLowerCase();det=WNAME[g]||(g.length<=3?g:'')||scriptLang(text)}return {text,det}}finally{gFree()}})();
+  await gSlot();try{const j=await groqSTT(pcm,lang,who,prev);let text=(j.text||'').trim();
+   if(Array.isArray(j.segments)&&j.segments.length){const ok=j.segments.filter(g=>{const ns=+g.no_speech_prob||0,lp=+g.avg_logprob||0,cr=+g.compression_ratio||0;return !((ns>0.6&&lp<-0.7)||lp<-1.25||cr>2.6||ns>0.9)});if(ok.length<j.segments.length){log(`필터: 신뢰도 낮은 구간 ${j.segments.length-ok.length}/${j.segments.length}개 제외`);text=ok.map(g=>String(g.text||'').trim()).join(NOSP(lang==='auto'?(scriptLang(text)||'en'):lang)?'':' ').trim()}}let det='';if(lang==='auto'){const g=String(j.language||'').toLowerCase();det=WNAME[g]||(g.length<=3?g:'')||scriptLang(text)}return {text,det}}finally{gFree()}})();
  job.catch(()=>{});
  finQ=finQ.then(()=>job.then(({text,det})=>{
   if(lang==='auto'&&!det)det=scriptLang(text)||lastThemLang||'en';if(lang!=='auto')det=lang;
   if(s.conv){det=pairOf(det,text);const w=det===myLang()?'me':'them';if(w!==s.who){s.who=w;log(`대화: ${L(det).n} 감지 → ${w==='me'?'나':'상대'}`)}s.lang=det}
   if(s.lang==='auto'||det){s.lang=det||s.lang;if(cfg.src==='auto'&&cfg.input==='mic'&&s.who==='them'&&s.lang===myLang()){s.who='me'}if(s.who!=='me'&&s.lang!=='auto'){stickyN=s.lang===lastThemLang?stickyN+1:1;lastThemLang=s.lang;if(s.lang!==cfg.tgt)lastForeign=s.lang}}
-  if(HALL.test(text.trim()))text='';const ms=Math.round(performance.now()-t0);latSTT=`인식 ${ms}ms`;log(`${eng} STT ${ms}ms (${secs}s${s.lang?' '+s.lang:''}): ${text.slice(0,40)}`);s.proc=false;finalize(s,text)},
+  {const tt=text.trim(),n=tt.replace(/[\p{P}\p{S}\s]/gu,'');if(HALL.test(tt)||HALL_IN.test(tt)||(n.length===1&&/^\p{Script=Han}$/u.test(n)&&!/^[好对對是嗯哦行要不]$/.test(n))){if(tt)log('필터: 음성 없는 구간의 환각 문구 제외 — '+tt.slice(0,30));text=''}}const ms=Math.round(performance.now()-t0);latSTT=`인식 ${ms}ms`;log(`${eng} STT ${ms}ms (${secs}s${s.lang?' '+s.lang:''}): ${text.slice(0,40)}`);s.proc=false;finalize(s,text)},
   e=>{s.proc=false;if(s.src)finalize(s,s.src);else dropSeg(s);log('STT error: '+e.message);toast(e.message)})).finally(()=>{finalsPending--;latSTT=latSTT.replace(/ · 대기 \d+건/,'')+(finalsPending>1?` · 대기 ${finalsPending}건`:'');showLat()})}
 function toWav(x,sr){const n=x.length,buf=new ArrayBuffer(44+n*2),v=new DataView(buf),w=(o,s)=>{for(let i=0;i<s.length;i++)v.setUint8(o+i,s.charCodeAt(i))};
  w(0,'RIFF');v.setUint32(4,36+n*2,true);w(8,'WAVE');w(12,'fmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,sr,true);v.setUint32(28,sr*2,true);v.setUint16(32,2,true);v.setUint16(34,16,true);w(36,'data');v.setUint32(40,n*2,true);
@@ -1305,7 +1309,7 @@ async function switchToVad(reason,quiet){if(!running)return;const target=qOk()?'
 
 /* ---------- 레벨 ---------- */
 let lvlT=0,lvlV=0,lvlShown=-1;const lvlEl=$('#lvl'),runEl=$('#run');
-function setLevel(rms){lastRms=rms;if(rms>rmsPeak)rmsPeak=rms;lvlV=Math.max(lvlV,Math.min(1,Math.sqrt(rms)*2.6));if(lvlT)return;
+function setLevel(rms){lastRms=rms;audioAt=Date.now();if(rms>rmsPeak)rmsPeak=rms;lvlV=Math.max(lvlV,Math.min(1,Math.sqrt(rms)*2.6));if(lvlT)return;
  lvlT=setTimeout(()=>{lvlT=0;const x=lvlV;lvlV=0;if(Math.abs(x-lvlShown)<0.04)return;lvlShown=x;lvlEl.style.width=Math.round(x*100)+'%';runEl.style.setProperty('--lvl',x.toFixed(2))},90)}
 function meter(stream){try{const ctx=audioCtx||(audioCtx=new AudioContext()),an=ctx.createAnalyser();an.fftSize=512;const srcN=ctx.createMediaStreamSource(stream);srcN.connect(an);pitchSetup(ctx,srcN);const d=new Float32Array(an.fftSize);
  const loop=()=>{if(!audioCtx)return;an.getFloatTimeDomainData(d);let s=0;for(const x of d)s+=x*x;setLevel(Math.sqrt(s/d.length));meterRAF=requestAnimationFrame(loop)};loop()}catch(e){}}
@@ -1495,15 +1499,16 @@ $('#syncChk').checked=cfg.sync;$('#sumAuto').checked=cfg.sumAuto;
    휴대폰을 주머니에 넣고 이어폰으로만 통역을 듣는 모드. 검은 잠금 화면(터치 오작동 방지) + 화면 켜짐 유지 + 듣기 강제 켬.
    이어폰 버튼(Media Session): 재생/일시정지=통역 일시정지·재개, 다음 곡=대화 모드, 이전 곡=방금 문장 다시 듣기.
    Android 앱(WarpsNative)에서는 화면이 꺼져도 동작하고 버튼·알림 조작을 네이티브가 전달함(self.WARPS.act). */
-let pocket=false,pkPaused=false,pkAudio=null,lastHeard=null,pkClockT=0;
+let audioAt=0,pkStart=0,pkNoAudio=false,pocket=false,pkPaused=false,pkAudio=null,lastHeard=null,pkClockT=0;
 const NATIVE=!!self.WarpsNative;
 function pkSilence(){const n=8000,b=new ArrayBuffer(44+n),v=new DataView(b),w=(o,t)=>[...t].forEach((c,i)=>v.setUint8(o+i,c.charCodeAt(0)));w(0,'RIFF');v.setUint32(4,36+n,true);w(8,'WAVEfmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,8000,true);v.setUint32(28,8000,true);v.setUint16(32,1,true);v.setUint16(34,8,true);w(36,'data');v.setUint32(40,n,true);new Uint8Array(b,44).fill(128);return URL.createObjectURL(new Blob([b],{type:'audio/wav'}))}
 function pkSay(t){try{if(!('speechSynthesis' in self))return;ttsRecent.push({t:Date.now(),x:normTxt(t)});const u=new SpeechSynthesisUtterance(t);u.lang='ko-KR';u.rate=1.15;speechSynthesis.speak(u)}catch(_){}}
-function pkUI(){const d=new Date(),c=$('#pkClock');if(c)c.textContent=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
- const st=$('#pkStat');if(st){const off=!running||pkPaused;st.classList.toggle('off',off);st.textContent=!running?'정지됨':pkPaused?'일시정지 — 이어폰 버튼 1번으로 재개':convActive?`대화 모드 · ${L(myLang()).n} ⇄ ${L(otherLang()).n}`:speaker==='me'?`말하기 · ${L(myLang()).n} → ${L(otherLang()).n}`:`통역 중 · ${L(srcNow()).n} → ${L(cfg.tgt).n}`}
+function pkCheck(){if(!pocket||!running||pkPaused||sttNow==='web')return;const quiet=Date.now()-Math.max(audioAt,pkStart);if(quiet>10000&&!pkNoAudio){pkNoAudio=true;log('주머니: 10초 넘게 소리 입력 없음');pkSay('소리가 들어오지 않습니다. 앱을 열어 확인해 주세요')}else if(quiet<2000&&pkNoAudio){pkNoAudio=false;log('주머니: 소리 입력 복구')}}
+function pkUI(){pkCheck();const d=new Date(),c=$('#pkClock');if(c)c.textContent=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
+ const st=$('#pkStat');if(st){const off=!running||pkPaused;st.classList.toggle('off',off);st.textContent=!running?'정지됨':pkNoAudio?'소리 입력 없음 — 마이크/입력 설정 확인':pkPaused?'일시정지 — 이어폰 버튼 1번으로 재개':convActive?`대화 모드 · ${L(myLang()).n} ⇄ ${L(otherLang()).n}`:speaker==='me'?`말하기 · ${L(myLang()).n} → ${L(otherLang()).n}`:`통역 중 · ${L(srcNow()).n} → ${L(cfg.tgt).n}`}
  try{if(navigator.mediaSession&&pocket&&!NATIVE)navigator.mediaSession.playbackState=pkPaused?'paused':'playing'}catch(_){}
  try{if(NATIVE)WarpsNative.state(JSON.stringify({running,paused:pkPaused,pocket,talk:speaker==='me',conv:convActive,dir:`${L(srcNow()).n} → ${L(cfg.tgt).n}`}))}catch(_){}}
-function pkAct(a){if(!running){if(a==='toggle'||a==='play')pkSay('통역이 꺼져 있음');return}
+function pkAct(a,from){if(pocket&&from==='key'&&Date.now()-pkStart<3000){log('주머니: 시작 직후 이어폰 키 무시 ('+a+')');return}if(a==='play'&&!pkPaused){pkUI();return}if(a==='pause'&&pkPaused){pkUI();return}if(from)log('주머니 키: '+a);if(!running){if(a==='toggle'||a==='play')pkSay('통역이 꺼져 있음');return}
  if(a==='toggle'||a==='pause'||a==='play'){pkPaused=a==='toggle'?!pkPaused:a==='pause';
   if(pkPaused){LSQ.length=0;MSQ.length=0;try{speechSynthesis.cancel()}catch(_){}lsBusy=false;msBusy=false;try{stopDeviceAudio()}catch(_){}paused=true;if(sttNow==='web'&&rec){try{rec.abort()}catch(_){}}pkSay('통역 일시정지')}
   else{pkSay('통역 재개');setTimeout(()=>{if(!pkPaused)holdInput(false)},900)}log('주머니: '+(pkPaused?'일시정지':'재개'))}
@@ -1513,13 +1518,13 @@ function pkAct(a){if(!running){if(a==='toggle'||a==='play')pkSay('통역이 꺼�
  pkUI()}
 function pkMedia(on){const ms=navigator.mediaSession;if(!ms)return;const set=(a,f)=>{try{ms.setActionHandler(a,f)}catch(_){}};
  if(on){try{ms.metadata=new MediaMetadata({title:'WARPS 실시간 통역',artist:'주머니 모드',album:'WARPS Real-time'})}catch(_){}
-  set('play',()=>pkAct('toggle'));set('pause',()=>pkAct('toggle'));set('nexttrack',()=>pkAct('talk'));set('previoustrack',()=>pkAct('repeat'));set('stop',()=>pkAct('pause'))}
+  set('play',()=>pkAct('play','key'));set('pause',()=>pkAct('pause','key'));set('nexttrack',()=>pkAct('talk','key'));set('previoustrack',()=>pkAct('repeat','key'));set('stop',()=>pkAct('pause','key'))}
  else ['play','pause','nexttrack','previoustrack','stop'].forEach(a=>set(a,null));
  try{ms.playbackState=on?'playing':'none'}catch(_){}}
 async function pocketOn(){if(pocket)return;$('#moreMenu').hidden=true;
  if(!NATIVE){try{if(!pkAudio){pkAudio=new Audio(pkSilence());pkAudio.loop=true}await pkAudio.play()}catch(e){log('pocket audio: '+e.message)}}
  unlockTTS();if(!running){try{await start()}catch(_){}if(!running){toast('주머니 모드: 먼저 마이크를 허용하고 시작해야 함');try{pkAudio&&pkAudio.pause()}catch(_){}return}}
- pocket=true;pkPaused=false;$('#pkLast').textContent='';$('#pocket').hidden=false;listenUI();lockScreen();
+ pocket=true;pkPaused=false;pkStart=Date.now();pkNoAudio=false;$('#pkLast').textContent='';$('#pocket').hidden=false;listenUI();lockScreen();
  try{await document.documentElement.requestFullscreen({navigationUI:'hide'})}catch(_){}
  if(NATIVE){$('#pkHint').innerHTML='화면을 꺼도 통역이 계속됨 · 알림 창에서도 조작 가능<br>이어폰 버튼 — 1번: 일시정지/재개 · 2번: 대화 모드 · 3번: 다시 듣기'}else pkMedia(true);
  pkUI();clearInterval(pkClockT);pkClockT=setInterval(pkUI,5000);log('주머니 모드 켜짐');pkSay('주머니 모드. 통역을 시작합니다')}
