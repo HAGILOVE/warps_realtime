@@ -149,7 +149,27 @@ main[data-view=chat] #paneSrc,main[data-view=chat] #paneTgt,main[data-view=split
 .say{font-size:calc(var(--fs) * .95);font-weight:650;margin:8px 0 4px;line-height:1.45;overflow-wrap:anywhere}
 .pron{margin:-1px 0 5px;color:var(--mute);font-size:12.5px;line-height:1.45;letter-spacing:.01em;overflow-wrap:anywhere}.pron i{font-style:normal;font-size:10.5px;font-weight:650;border:1px solid var(--line2);border-radius:5px;padding:0 4px;margin-right:5px;vertical-align:1px}
 .row.spoken p::after{content:' 🔊';font-size:.8em;opacity:.7}body.meOn .hold{background:var(--live);color:#fff;border-color:var(--live)}body.meOn .hold kbd{background:rgb(255 255 255/.2);color:#fff;border-color:transparent}
-.dcenter{position:relative}#pocket{position:fixed;inset:0;z-index:99999;background:#000;color:#5a5a5a;display:flex;align-items:center;justify-content:center;text-align:center;touch-action:none;user-select:none;-webkit-user-select:none}#pocket[hidden]{display:none}#pocket .pk-in{max-width:420px;padding:24px;display:flex;flex-direction:column;gap:14px;align-items:center}#pkClock{font-size:44px;font-weight:300;color:#666;letter-spacing:2px}#pkStat{font-size:15px;color:#4a7}#pkStat.off{color:#a65}#pkLast{min-height:3.2em;font-size:17px;line-height:1.5;color:#777;margin:0}#pkUnlock{margin-top:18px;width:150px;height:150px;border-radius:50%;border:2px solid #333;background:transparent;color:#666;font-size:13px;position:relative;overflow:hidden}#pkUnlock i{position:absolute;left:0;bottom:0;width:100%;height:0;background:#1d3a2a}#pkUnlock.hold i{height:100%;transition:height 1.2s linear}#pkUnlock span{position:relative}#pocket small{color:#444;font-size:12px;line-height:1.6}.omenu .lrow{display:flex;align-items:center;gap:10px;padding:6px 10px}.omenu .lrow>span{flex:0 0 112px;display:flex;flex-direction:column;line-height:1.25}.omenu .lrow>span i{font-style:normal;white-space:nowrap}.omenu .lbtns button{flex-wrap:wrap}.omenu .lbtns button small{flex-basis:100%;padding-left:28px}.omenu .lrow>span small{opacity:.65;font-size:11px}.omenu .lrow select{flex:1;min-width:0;padding:7px 8px;border-radius:8px}.omenu .lbtns{display:flex;flex-direction:column}.menu.omenu{left:auto;right:0;transform:none;width:min(400px,94vw);min-width:0;max-height:70vh;overflow:auto}.menu.omenu button{align-items:center;text-align:left;white-space:normal;min-height:40px}.menu.omenu button>span:nth-child(2){flex:1;min-width:0;overflow-wrap:anywhere;line-height:1.35}.menu.omenu button small{flex:none;white-space:nowrap;margin-left:8px}.omenu h5{margin:8px 10px 4px;font-size:12px;color:var(--mute);font-weight:700}.omenu button{gap:8px}.omenu button .ck{width:16px;flex:none;color:var(--acc);font-weight:800}.omenu button small{margin-left:auto;color:var(--mute);font-size:11.5px}.omenu .note{font-size:11.5px;color:var(--mute);padding:6px 10px 4px;line-height:1.45}.omenu hr{border:0;border-top:1px solid var(--line);margin:4px 0}
+.dcenter{position:relative}
+#vision{position:fixed;inset:0;z-index:99998;background:#000;color:#fff;overflow:hidden;font-size:15px}#vision[hidden]{display:none}
+#visVid{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
+#visLabels{position:absolute;inset:0;pointer-events:none}
+#visLabels div{position:absolute;background:rgba(0,0,0,.72);color:#fff;border:1px solid rgba(80,220,160,.85);border-radius:6px;padding:2px 6px;line-height:1.25;font-weight:600;overflow:hidden;text-shadow:0 1px 2px #000;transition:opacity .4s}
+#visMark{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border:3px solid #ff3b30;border-radius:50%;pointer-events:none;box-shadow:0 0 0 2px rgba(0,0,0,.4)}
+.vis-top{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;gap:8px;padding:10px 12px;background:linear-gradient(rgba(0,0,0,.7),transparent);z-index:2}
+.vis-top button{background:rgba(255,255,255,.14);color:#fff;border:0;border-radius:999px;min-width:38px;height:38px;font-size:17px}
+#visStat{flex:1;font-size:13px;color:#cfe;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vis-tg{display:flex;align-items:center;gap:4px;font-size:13px;background:rgba(255,255,255,.12);padding:6px 9px;border-radius:999px;white-space:nowrap}
+#visPanel{position:absolute;top:58px;right:0;bottom:96px;width:min(42%,470px);padding:10px 14px;overflow-y:auto;background:linear-gradient(to left,rgba(0,0,0,.78),rgba(0,0,0,.45));display:flex;flex-direction:column;gap:12px;z-index:1}
+#visPanel h6{margin:0 0 4px;font-size:12px;color:#8fd;letter-spacing:.5px;font-weight:600}
+#visPanel ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+#visPanel li b{display:block;font-size:16px;font-weight:600;line-height:1.35}#visPanel li small{display:block;font-size:12px;color:#aab;line-height:1.3}
+#visPanel p{margin:0;line-height:1.45}#visQ{font-size:12px;color:#aab}#visAns{font-size:17px;line-height:1.5;font-weight:600;white-space:pre-wrap}
+#visPanel .dim{color:#889;font-size:13px}#visPanel li.new b{color:#9fe}
+.vis-bot{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:flex-end;gap:10px;padding:12px;background:linear-gradient(transparent,rgba(0,0,0,.75));z-index:2}
+.vis-chips{flex:1;display:flex;flex-wrap:wrap;gap:6px}.vis-chips button{background:rgba(255,255,255,.15);color:#fff;border:0;border-radius:999px;padding:8px 12px;font-size:13px}
+#visAsk{flex:0 0 auto;display:flex;align-items:center;gap:6px;background:#1f8f5f;color:#fff;border:0;border-radius:999px;padding:14px 20px;font-size:16px;font-weight:600;touch-action:none}
+#visAsk.on{background:#d33;animation:visPulse 1s infinite}@keyframes visPulse{50%{box-shadow:0 0 0 8px rgba(221,51,51,.25)}}
+@media (max-aspect-ratio:1/1){#visVid{height:calc(58% - 118px)}#visPanel{top:auto;left:0;right:0;width:auto;height:42%;bottom:118px;background:linear-gradient(to top,rgba(0,0,0,.8),rgba(0,0,0,.4))}.vis-tg{padding:5px 7px;font-size:12px}.vis-bot{flex-direction:column;align-items:stretch}#visAsk{justify-content:center}}#pocket{position:fixed;inset:0;z-index:99999;background:#000;color:#5a5a5a;display:flex;align-items:center;justify-content:center;text-align:center;touch-action:none;user-select:none;-webkit-user-select:none}#pocket[hidden]{display:none}#pocket .pk-in{max-width:420px;padding:24px;display:flex;flex-direction:column;gap:14px;align-items:center}#pkClock{font-size:44px;font-weight:300;color:#666;letter-spacing:2px}#pkStat{font-size:15px;color:#4a7}#pkStat.off{color:#a65}#pkLast{min-height:3.2em;font-size:17px;line-height:1.5;color:#777;margin:0}#pkUnlock{margin-top:18px;width:150px;height:150px;border-radius:50%;border:2px solid #333;background:transparent;color:#666;font-size:13px;position:relative;overflow:hidden}#pkUnlock i{position:absolute;left:0;bottom:0;width:100%;height:0;background:#1d3a2a}#pkUnlock.hold i{height:100%;transition:height 1.2s linear}#pkUnlock span{position:relative}#pocket small{color:#444;font-size:12px;line-height:1.6}.omenu .lrow{display:flex;align-items:center;gap:10px;padding:6px 10px}.omenu .lrow>span{flex:0 0 112px;display:flex;flex-direction:column;line-height:1.25}.omenu .lrow>span i{font-style:normal;white-space:nowrap}.omenu .lbtns button{flex-wrap:wrap}.omenu .lbtns button small{flex-basis:100%;padding-left:28px}.omenu .lrow>span small{opacity:.65;font-size:11px}.omenu .lrow select{flex:1;min-width:0;padding:7px 8px;border-radius:8px}.omenu .lbtns{display:flex;flex-direction:column}.menu.omenu{left:auto;right:0;transform:none;width:min(400px,94vw);min-width:0;max-height:70vh;overflow:auto}.menu.omenu button{align-items:center;text-align:left;white-space:normal;min-height:40px}.menu.omenu button>span:nth-child(2){flex:1;min-width:0;overflow-wrap:anywhere;line-height:1.35}.menu.omenu button small{flex:none;white-space:nowrap;margin-left:8px}.omenu h5{margin:8px 10px 4px;font-size:12px;color:var(--mute);font-weight:700}.omenu button{gap:8px}.omenu button .ck{width:16px;flex:none;color:var(--acc);font-weight:800}.omenu button small{margin-left:auto;color:var(--mute);font-size:11.5px}.omenu .note{font-size:11.5px;color:var(--mute);padding:6px 10px 4px;line-height:1.45}.omenu hr{border:0;border-top:1px solid var(--line);margin:4px 0}
 .lbtn{display:inline-flex;align-items:center;gap:6px}.lbtn svg{width:17px;height:17px}.lbtn.on{background:var(--accSoft,rgba(58,107,240,.12));color:var(--accSoftInk,var(--acc));border-color:var(--accLine,var(--acc))}.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media(max-width:820px){.lbtn span{display:none}.menu.omenu{position:fixed;left:3vw;right:3vw;bottom:78px;width:auto;max-height:65vh}}
 .sum li.nw{background:var(--accSoft,rgba(58,107,240,.12));border-radius:6px;animation:nwf 2.5s ease-out forwards}@keyframes nwf{0%{background:var(--accSoft,rgba(58,107,240,.25))}100%{background:transparent}}
@@ -275,7 +295,7 @@ body.sub #feedTgt .row{grid-template-columns:minmax(0,1fr) 30px}body.sub #feedTg
 </head>
 <body>
 <header class="top">
-  <div class="brand"><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2"/></svg></span><b>WARPS</b><span class="rt">Real-time</span><small>실시간 통역</small><span class="ver" id="verTag" title="앱 버전">v1.2.12</span></div>
+  <div class="brand"><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2"/></svg></span><b>WARPS</b><span class="rt">Real-time</span><small>실시간 통역</small><span class="ver" id="verTag" title="앱 버전">v1.2.13</span></div>
   <div class="pill" id="livePill"><i></i><span id="stat">대기</span><span id="timer"></span></div>
   <span class="sp top-sp"></span>
   <div class="langs">
@@ -356,6 +376,7 @@ body.sub #feedTgt .row{grid-template-columns:minmax(0,1fr) 30px}body.sub #feedTg
     <button id="minBtn" class="ghost" type="button">회의록</button>
     <button id="moreBtn" class="icon" type="button" aria-label="더 보기" aria-haspopup="true"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/></svg></button>
     <div class="menu" id="moreMenu" hidden>
+      <button type="button" id="visionBtn">비전 모드 <kbd>카메라 · 글자·소리 번역 · 음성 질문</kbd></button>
       <button type="button" id="pocketBtn">주머니 모드 <kbd>화면 잠금 · 이어폰으로 듣기</kbd></button>
       <hr>
       <button type="button" id="minBtn2">회의록 만들기·저장</button>
@@ -467,7 +488,7 @@ body.sub #feedTgt .row{grid-template-columns:minmax(0,1fr) 30px}body.sub #feedTg
     <div id="testOut"></div>
     <div class="dl">
       <button type="button" id="testBtn" class="ghost">연결 테스트</button>
-      <span class="sp"></span><small class="hint" id="cfgVer" style="margin-right:8px">WARPS Real-time v1.2.12</small>
+      <span class="sp"></span><small class="hint" id="cfgVer" style="margin-right:8px">WARPS Real-time v1.2.13</small>
       <button value="cancel" type="submit" class="ghost">닫기</button>
       <button class="primary" type="submit" value="save">저장</button>
     </div>
@@ -541,6 +562,28 @@ body.sub #feedTgt .row{grid-template-columns:minmax(0,1fr) 30px}body.sub #feedTg
     <div class="dl"><button value="close" type="submit" class="primary">확인</button></div>
   </form>
 </dialog>
+<div id="vision" hidden>
+  <video id="visVid" playsinline muted autoplay></video>
+  <div id="visLabels"></div><div id="visMark" hidden></div>
+  <div class="vis-top">
+    <button type="button" id="visClose" aria-label="닫기">✕</button>
+    <span id="visStat">카메라 준비 중…</span>
+    <label class="vis-tg"><input type="checkbox" id="visAutoT"> 글자</label>
+    <label class="vis-tg"><input type="checkbox" id="visAutoS"> 장면</label>
+    <label class="vis-tg"><input type="checkbox" id="visSpeak"> 읽기</label>
+    <button type="button" id="visFlip">⟲</button>
+  </div>
+  <aside id="visPanel">
+    <section id="visAnsBox" hidden><h6>💬 답변</h6><p id="visQ"></p><div id="visAns"></div></section>
+    <section><h6>🔊 들리는 말</h6><ul id="visHear"><li class="dim">상대가 말하면 여기에 번역이 나옴</li></ul></section>
+    <section><h6>🔤 보이는 글자</h6><ul id="visTexts"><li class="dim">글자를 비추면 번역이 나옴</li></ul></section>
+    <section><h6>👁 장면</h6><p id="visScene" class="dim">-</p></section>
+  </aside>
+  <div class="vis-bot">
+    <div class="vis-chips"><button type="button" data-q="지금 보이는 것이 무엇인지 짧게 설명해 줘">이게 뭐야?</button><button type="button" data-q="화면에 보이는 모든 글자를 빠짐없이 번역해 줘">글자 모두 번역</button><button type="button" data-q="지금 보이는 장면을 자세히 설명해 줘">자세히</button><button type="button" data-q="지금 보이는 것 중 주의하거나 조심해야 할 점이 있으면 알려 줘">주의할 점</button></div>
+    <button type="button" id="visAsk"><span class="mic">🎤</span><span id="visAskLbl">질문하기</span></button>
+  </div>
+</div>
 <div id="pocket" hidden><div class="pk-in"><div id="pkClock"></div><div id="pkStat"></div><p id="pkLast"></p><button id="pkUnlock" type="button"><i></i><span>길게 눌러<br>잠금 해제</span></button><small id="pkHint">이어폰 버튼 — 1번: 일시정지/재개 · 2번: 대화 모드 · 3번: 방금 문장 다시 듣기<br>화면 밝기를 낮추면 배터리가 오래 감</small></div></div>
 <div id="toast" role="status"><span></span><button type="button" hidden></button></div>
 
@@ -569,7 +612,7 @@ const stored=store.get('cfg',{}),hadLocal=Object.keys(stored).length>0;
 if(!stored.v&&stored.stt==='web')stored.stt='auto';
 if((stored.v||0)<3){if(!stored.lModel||stored.lModel==='onnx-community/whisper-base')stored.lModel='auto';if(+stored.sil===650||!stored.sil)stored.sil=450;stored.refine=true}
 const cfg=Object.assign({src:'en',tgt:'ko',input:'mic',stt:'auto',lModel:'auto',lDevice:'webgpu',tr:'auto',refine:true,style:'natural',interim:true,llm:'gemini',n:3,auto:true,sumAuto:true,ear:'auto',ctx:'',
- gKey:'',gModel:'gemini-3.5-flash-lite',qKey:'',qModel:'llama-3.3-70b-versatile',qStt:'whisper-large-v3-turbo',sil:450,fs:18,gloss:'',sync:true,theme:'system',view:'split',sub:false,side:'reply',autolog:true,rows:250,pron:true,meSpeak:true,conv:true,fast:true,myLang:'auto',voice:'auto',myF0:0,fuse:true,listen:'auto',lRate:1.15,listenDev:'',listenDevLbl:'',sayDev:'',sayDevLbl:'',split:false},stored,{v:3});
+ gKey:'',gModel:'gemini-3.5-flash-lite',qKey:'',qModel:'llama-3.3-70b-versatile',qStt:'whisper-large-v3-turbo',sil:450,fs:18,gloss:'',sync:true,theme:'system',view:'split',sub:false,side:'reply',autolog:true,rows:250,pron:true,meSpeak:true,conv:true,fast:true,visAutoT:true,visAutoS:true,visSpeak:true,visReadT:false,visModel:'qwen/qwen3.8-27b',myLang:'auto',voice:'auto',myF0:0,fuse:true,listen:'auto',lRate:1.15,listenDev:'',listenDevLbl:'',sayDev:'',sayDevLbl:'',split:false},stored,{v:3});
 let ssT=0;
 const localStamp=()=>cfg._t||(hadLocal?1:0);
 const pushCfg=()=>{if(PROXY){clearTimeout(ssT);ssT=setTimeout(()=>fetch('/__warps/settings',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({app:'warps-realtime',saved:Date.now(),cfg})}).catch(()=>{}),300)}};
@@ -694,6 +737,7 @@ function joinText(a,b){return /[\u3000-\u30ff\u3400-\u9fff\uff00-\uffef]$/.test(
 function prevFinal(s){for(let i=segs.indexOf(s)-1;i>=0;i--){const p=segs[i];if(p.hidden)return null;if(p.final)return p;if(p.wait||!p.src)continue;return null}return null}
 function finalize(s,text,early){if(!segs.includes(s))return;s.early=!!early;text=(text||'').replace(/\s+/g,' ').trim();s.wait=false;
  if(!text){dropSeg(s);return}
+ if(s.who==='me'&&visCollect){visAddQ(text);dropSeg(s);return}
  const now=Date.now();if(text===lastFinal.x&&now-lastFinal.t<4000){dropSeg(s);return}lastFinal={t:now,x:text};
  if(s.who==='me'&&!s.tts&&!s.conv){const m=myLang(),o=otherLang();if(o!=='auto'&&scriptKey(m)!==scriptKey(o)){const fl=scriptShare(text,o)>0.5&&scriptShare(text,m)<0.3;if(fl!==!!s.flip){s.flip=fl;s.lang=fl?o:m;if(fl)log(`말하기: ${L(o).n}로 인식됨 → ${L(m).n}로 번역(읽어주기 없음)`)}}}
  if(s.who!=='me'&&!s.tts){const n=normTxt(text);
@@ -1114,7 +1158,7 @@ function startWeb(track){const SR=window.SpeechRecognition||window.webkitSpeechR
 
 /* ---------- 로컬 AI 워커 (transformers.js · 모델은 PC 고정 폴더에 1회 저장) ---------- */
 const TJS='3.8.1';
-const APP_VER='1.2.12';
+const APP_VER='1.2.13';
 let LAUNCHER=null,beatT=0,SRV={},mobWarned=false;
 /* 화면(웹 파일) 버전과 설치된 실행기 버전이 다르면 이전 화면이 남아 있는 것 → 경고 */
 /* 창 크기·위치 기억: 다음 실행 때 같은 크기로 열림(설치형) */
@@ -1218,7 +1262,7 @@ function vadInit(){if(vadTried)return;vadTried=true;try{vadW=mkWorker(VAD_WORKER
 /* ---------- VAD 분할 파이프라인 (Silero VAD + 실시간 중간 인식) ---------- */
 const WORKLET="class Tap extends AudioWorkletProcessor{process(i){const c=i[0]&&i[0][0];if(c)this.port.postMessage(c.slice(0));return true}}registerProcessor('tap',Tap)";
 /* Whisper 환각 문구 — 음악·무음·효과음에서 학습 데이터의 자막 크레디트를 지어냄 */
-const HALL_IN=/中文字幕|字幕志愿者|字幕志願者|李宗盛|明镜与点点|明鏡與點點|点点栏目|請不吝|请不吝|點贊訂閱|点赞订阅|字幕由|字幕提供|Amara\.org|ご視聴ありがとうございま|チャンネル登録|시청해\s?주셔서\s?감사|구독과\s?좋아요|자막\s?제공|Subtitles by|Transcribed by|Translated by|thanks for watching|thank you for watching|please subscribe|like and subscribe/iu;
+const HALL_IN=/收看|谢谢观看|謝謝觀看|感谢观看|欢迎订阅|歡迎訂閱|订阅我的频道|中文字幕|字幕志愿者|字幕志願者|李宗盛|明镜与点点|明鏡與點點|点点栏目|請不吝|请不吝|點贊訂閱|点赞订阅|字幕由|字幕提供|Amara\.org|ご視聴ありがとうございま|チャンネル登録|시청해\s?주셔서\s?감사|구독과\s?좋아요|자막\s?제공|Subtitles by|Transcribed by|Translated by|thanks for watching|thank you for watching|please subscribe|like and subscribe/iu;
 const HALL=/^(?:谢谢观看.*|謝謝收看.*|感谢观看.*|感謝收看.*|ご清聴.*|[\p{P}\p{S}\s]*|you\.?|bye\.?|thank you\.?|thanks for watching!?\.?|thank you for watching\.?|please subscribe\.?|구독과 좋아요.*|시청해\s?주셔서 감사합니다\.?|MBC 뉴스.*|ご視聴ありがとうございました。?|字幕由.*|謝謝觀看.*|продолжение следует\.*|субтитры.*|\[[^\]]*\]|\([^)]*\)|♪.*)$/iu;
 const V={probs:[],pprev:[],on:false,seg:[],segLen:0,sil:0,prev:[],s:null,lastInt:0,rsQ:new Float32Array(0),rsPos:0,fb:new Float32Array(512),fbN:0,pend:[],noise:0.004};
 function resetV(){Object.assign(V,{skip:false,probs:[],pprev:[],on:false,seg:[],segLen:0,sil:0,prev:[],s:null,lastInt:0,rsQ:new Float32Array(0),rsPos:0,fbN:0,pend:[]});if(vadW&&vadReady)vadW.postMessage({t:'reset'})}
@@ -1234,7 +1278,10 @@ async function startVad(stream){
  const src=audioCtx.createMediaStreamSource(stream),tap=new AudioWorkletNode(audioCtx,'tap'),mute=audioCtx.createGain();mute.gain.value=0;pitchSetup(audioCtx,src);
  src.connect(tap);tap.connect(mute);mute.connect(audioCtx.destination);resetV();
  tap.port.onmessage=e=>onAudio(e.data);status('듣는 중 · '+STTN[sttNow]+(sttNow==='local'?` (${asrDev==='webgpu'?'GPU':'CPU'})`:''));log('VAD start: '+sttNow)}
-function onAudio16(f){if(!running)return;if(gated())f=new Float32Array(f.length);let e=0;for(let i=0;i<f.length;i++)e+=f[i]*f[i];setLevel(Math.sqrt(e/f.length));
+let agcEnv=0.02,agcG=1;
+function agc(f){let e=0;for(let i=0;i<f.length;i++)e+=f[i]*f[i];const r=Math.sqrt(e/f.length);if(r>0.004)agcEnv=agcEnv*(r>agcEnv?0.7:0.995)+r*(r>agcEnv?0.3:0.005);
+ const want=Math.max(1,Math.min(12,0.07/Math.max(agcEnv,0.004)));agcG=agcG*0.9+want*0.1;if(agcG>1.05)for(let i=0;i<f.length;i++){const v=f[i]*agcG;f[i]=v>0.98?0.98:v<-0.98?-0.98:v}return f}
+function onAudio16(f){if(!running)return;if(gated())f=new Float32Array(f.length);else f=agc(f);let e=0;for(let i=0;i<f.length;i++)e+=f[i]*f[i];setLevel(Math.sqrt(e/f.length));
  for(let i=0;i<f.length;i++){V.fb[V.fbN++]=f[i];if(V.fbN===512){pushFrame(V.fb.slice(0));V.fbN=0}}}
 function onAudio(f){if(!audioCtx)return;if(gated())f=new Float32Array(f.length);let e=0;for(let i=0;i<f.length;i++)e+=f[i]*f[i];setLevel(Math.sqrt(e/f.length));
  const ratio=audioCtx.sampleRate/16000,q=new Float32Array(V.rsQ.length+f.length);q.set(V.rsQ);q.set(f,V.rsQ.length);let pos=V.rsPos;
@@ -1266,10 +1313,10 @@ let finalsPending=0,lagDrop=0;
 function maybeInterim(){if(sttNow!=='local'||!cfg.interim||!V.s||asrInflight>0||finalsPending>0)return;
  const now=performance.now(),gap=asrDev==='webgpu'?450:900;if(V.segLen<9600||now-V.lastInt<gap||asrRtf>0.6)return;
  V.lastInt=now;const s=V.s,lang=s.lang==='auto'?(s.detLang||(s.conv?'auto':autoHint())):s.lang,dur=V.segLen;localASR(concat(V.seg),lang,s.conv?pairCands():null).then(m=>{if(lang==='auto'&&m.lang&&!m.err){s.detLang=m.lang;s.detDur=dur}if(s.final||V.s!==s||!m.text||HALL.test(m.text))return;s.wait=false;s.src=m.text;paint(s);interimTr(s)})}
-function flushVad(){if(!V.on)return;if(V.s)V.s.eng=sttNow;const s=V.s,chunks=V.seg,sil=V.sil,len=V.segLen,strong=vadReady?V.probs.filter(p=>p>0.6).length:99;Object.assign(V,{on:false,seg:[],probs:[],segLen:0,sil:0,s:null});
+function flushVad(){if(!V.on)return;if(V.s)V.s.eng=sttNow;const s=V.s,chunks=V.seg,sil=V.sil,len=V.segLen,pmax=vadReady?Math.max(0,...V.probs.map(p=>+p||0)):1;Object.assign(V,{on:false,seg:[],probs:[],segLen:0,sil:0,s:null});
  const keep=Math.max(1,chunks.length-Math.max(0,Math.floor((sil-2560)/512)));
  if(len-sil<4000){if(s)dropSeg(s);return}
- if(strong<6){log(`VAD: 말소리 확신 구간 부족(${strong}프레임) → 건너뜀`);if(s)dropSeg(s);return}
+ if(pmax<0.5&&len-sil<16000){log(`VAD: 짧고 말소리 확률 낮은 구간(최대 ${pmax.toFixed(2)}) → 건너뜀`);if(s)dropSeg(s);return}
  transcribeFinal(s,concat(chunks.slice(0,keep)))}
 let finQ=Promise.resolve(),gAct=0;const gWait=[];
 let backlogWarned=false,stickyN=0,autoCount=0;
@@ -1289,13 +1336,14 @@ function transcribeFinal(s,pcm){if((s.eng||sttNow)==='local'&&finalsPending>=3){
  s.proc=true;paint(s);const t0=performance.now(),prev=(segs.filter(x=>x.final).slice(-1)[0]||{}).src||'';
  const job=(async()=>{if(eng==='local'){const m=await localASR(pcm,lang,s.conv?pairCands():null);if(m.err)throw new Error('로컬 AI: '+m.err);return {text:m.text,det:m.lang||''}}
   await gSlot();try{const j=await groqSTT(pcm,lang,who,prev);let text=(j.text||'').trim();
-   if(Array.isArray(j.segments)&&j.segments.length){const ok=j.segments.filter(g=>{const ns=+g.no_speech_prob||0,lp=+g.avg_logprob||0,cr=+g.compression_ratio||0;return !((ns>0.6&&lp<-0.7)||lp<-1.25||cr>2.6||ns>0.9)});if(ok.length<j.segments.length){log(`필터: 신뢰도 낮은 구간 ${j.segments.length-ok.length}/${j.segments.length}개 제외`);text=ok.map(g=>String(g.text||'').trim()).join(NOSP(lang==='auto'?(scriptLang(text)||'en'):lang)?'':' ').trim()}}let det='';if(lang==='auto'){const g=String(j.language||'').toLowerCase();det=WNAME[g]||(g.length<=3?g:'')||scriptLang(text)}return {text,det}}finally{gFree()}})();
+   if(Array.isArray(j.segments)&&j.segments.length){const ok=j.segments.filter(g=>{const ns=+g.no_speech_prob||0,lp=+g.avg_logprob||0,cr=+g.compression_ratio||0;return !((ns>0.8&&lp<-0.9)||lp<-1.8||cr>2.8)});if(ok.length<j.segments.length){log(`필터: 신뢰도 낮은 구간 ${j.segments.length-ok.length}/${j.segments.length}개 제외`);text=ok.map(g=>String(g.text||'').trim()).join(NOSP(lang==='auto'?(scriptLang(text)||'en'):lang)?'':' ').trim()}}let det='';if(lang==='auto'){const g=String(j.language||'').toLowerCase();det=WNAME[g]||(g.length<=3?g:'')||scriptLang(text)}return {text,det}}finally{gFree()}})();
  job.catch(()=>{});
  finQ=finQ.then(()=>job.then(({text,det})=>{
   if(lang==='auto'&&!det)det=scriptLang(text)||lastThemLang||'en';if(lang!=='auto')det=lang;
   if(s.conv){det=pairOf(det,text);const w=det===myLang()?'me':'them';if(w!==s.who){s.who=w;log(`대화: ${L(det).n} 감지 → ${w==='me'?'나':'상대'}`)}s.lang=det}
   if(s.lang==='auto'||det){s.lang=det||s.lang;if(cfg.src==='auto'&&cfg.input==='mic'&&s.who==='them'&&s.lang===myLang()){s.who='me'}if(s.who!=='me'&&s.lang!=='auto'){stickyN=s.lang===lastThemLang?stickyN+1:1;lastThemLang=s.lang;if(s.lang!==cfg.tgt)lastForeign=s.lang}}
-  {const tt=text.trim(),n=tt.replace(/[\p{P}\p{S}\s]/gu,'');if(HALL.test(tt)||HALL_IN.test(tt)||(n.length===1&&/^\p{Script=Han}$/u.test(n)&&!/^[好对對是嗯哦行要不]$/.test(n))){if(tt)log('필터: 음성 없는 구간의 환각 문구 제외 — '+tt.slice(0,30));text=''}}const ms=Math.round(performance.now()-t0);latSTT=`인식 ${ms}ms`;log(`${eng} STT ${ms}ms (${secs}s${s.lang?' '+s.lang:''}): ${text.slice(0,40)}`);s.proc=false;finalize(s,text)},
+  {const tt=text.trim();if(HALL_IN.test(tt)){const parts=tt.split(/(?<=[。！？!?.，,、])|\s+/).filter(x=>x&&x.trim()),keep=parts.filter(x=>!HALL_IN.test(x)&&!HALL.test(x.trim())).join(NOSP(s.lang||'')?'':' ').trim();if(keep&&keep.replace(/[\p{P}\p{S}\s]/gu,'').length>=2&&keep!==tt){log('필터: 환각 문구만 제거 — '+tt.slice(0,30));text=keep}}
+  if(HALL.test(text.trim())||HALL_IN.test(text.trim())||((n=>n.length===1&&/^\p{Script=Han}$/u.test(n)&&!/^[好对對是嗯哦行要不]$/.test(n))(text.replace(/[\p{P}\p{S}\s]/gu,'')))){if(text.trim())log('필터: 음성 없는 구간의 환각 문구 제외 — '+text.trim().slice(0,30));text=''}}const ms=Math.round(performance.now()-t0);latSTT=`인식 ${ms}ms`;log(`${eng} STT ${ms}ms (${secs}s${s.lang?' '+s.lang:''}): ${text.slice(0,40)}`);s.proc=false;finalize(s,text)},
   e=>{s.proc=false;if(s.src)finalize(s,s.src);else dropSeg(s);log('STT error: '+e.message);toast(e.message)})).finally(()=>{finalsPending--;latSTT=latSTT.replace(/ · 대기 \d+건/,'')+(finalsPending>1?` · 대기 ${finalsPending}건`:'');showLat()})}
 function toWav(x,sr){const n=x.length,buf=new ArrayBuffer(44+n*2),v=new DataView(buf),w=(o,s)=>{for(let i=0;i<s.length;i++)v.setUint8(o+i,s.charCodeAt(i))};
  w(0,'RIFF');v.setUint32(4,36+n*2,true);w(8,'WAVE');w(12,'fmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,sr,true);v.setUint32(28,sr*2,true);v.setUint16(32,2,true);v.setUint16(34,16,true);w(36,'data');v.setUint32(40,n*2,true);
@@ -1508,7 +1556,7 @@ function pkUI(){pkCheck();const d=new Date(),c=$('#pkClock');if(c)c.textContent=
  const st=$('#pkStat');if(st){const off=!running||pkPaused;st.classList.toggle('off',off);st.textContent=!running?'정지됨':pkNoAudio?'소리 입력 없음 — 마이크/입력 설정 확인':pkPaused?'일시정지 — 이어폰 버튼 1번으로 재개':convActive?`대화 모드 · ${L(myLang()).n} ⇄ ${L(otherLang()).n}`:speaker==='me'?`말하기 · ${L(myLang()).n} → ${L(otherLang()).n}`:`통역 중 · ${L(srcNow()).n} → ${L(cfg.tgt).n}`}
  try{if(navigator.mediaSession&&pocket&&!NATIVE)navigator.mediaSession.playbackState=pkPaused?'paused':'playing'}catch(_){}
  try{if(NATIVE)WarpsNative.state(JSON.stringify({running,paused:pkPaused,pocket,talk:speaker==='me',conv:convActive,dir:`${L(srcNow()).n} → ${L(cfg.tgt).n}`}))}catch(_){}}
-function pkAct(a,from){if(pocket&&from==='key'&&Date.now()-pkStart<3000){log('주머니: 시작 직후 이어폰 키 무시 ('+a+')');return}if(a==='play'&&!pkPaused){pkUI();return}if(a==='pause'&&pkPaused){pkUI();return}if(from)log('주머니 키: '+a);if(!running){if(a==='toggle'||a==='play')pkSay('통역이 꺼져 있음');return}
+function pkAct(a,from){if(visOn&&from){log('비전 키: '+a);if(a==='talk'){visCollect?visAskEnd():visAskStart();return}if(a==='repeat'){if(visLastAns)listenPush(visLastAns,'',myLang());return}visAnalyze('ask','지금 보이는 것이 무엇인지 짧게 설명해 줘');return}if(pocket&&from==='key'&&Date.now()-pkStart<3000){log('주머니: 시작 직후 이어폰 키 무시 ('+a+')');return}if(a==='play'&&!pkPaused){pkUI();return}if(a==='pause'&&pkPaused){pkUI();return}if(from)log('주머니 키: '+a);if(!running){if(a==='toggle'||a==='play')pkSay('통역이 꺼져 있음');return}
  if(a==='toggle'||a==='pause'||a==='play'){pkPaused=a==='toggle'?!pkPaused:a==='pause';
   if(pkPaused){LSQ.length=0;MSQ.length=0;try{speechSynthesis.cancel()}catch(_){}lsBusy=false;msBusy=false;try{stopDeviceAudio()}catch(_){}paused=true;if(sttNow==='web'&&rec){try{rec.abort()}catch(_){}}pkSay('통역 일시정지')}
   else{pkSay('통역 재개');setTimeout(()=>{if(!pkPaused)holdInput(false)},900)}log('주머니: '+(pkPaused?'일시정지':'재개'))}
@@ -1537,7 +1585,103 @@ function pocketOff(){if(!pocket)return;pocket=false;$('#pocket').hidden=true;cle
  $('#pocket').addEventListener('contextmenu',e=>e.preventDefault());$('#pocketBtn').onclick=()=>pocketOn()}
 if(NATIVE){setInterval(pkUI,3000);setTimeout(()=>{if(!qOk())toast('앱: 무료 Groq 키를 넣으면 인식이 더 빠르고 정확함(특히 일본어·대화 모드) — 지금은 휴대폰 기본 음성인식 사용',{label:'설정 열기',fn:()=>openCfg()})},2500);const r=$('#nInRow'),sel=$('#n_in');r.hidden=false;try{sel.value=localStorage.getItem('warps.nin')||'phone'}catch(_){}
  sel.onchange=()=>{try{localStorage.setItem('warps.nin',sel.value)}catch(_){}micStream=null;toast('입력: '+sel.options[sel.selectedIndex].text.split(' (')[0]+(running?' — 다시 시작함':''));if(running){stop();setTimeout(()=>start(),400)}}}
-self.WARPS={stop:()=>{if(pocket)pocketOff();if(running)stop()},devs:detectPhones,toast:m=>toast(m),log:m=>log(m),act:pkAct,pocketOn,pocketOff,state:()=>({running,paused:pkPaused,pocket,talk:speaker==='me'})};
+/* ================= 비전 모드 =================
+   AI 안경처럼: 카메라 화면 위에 ① 보이는 글자 번역(글자 위치에 겹쳐 표시) ② 장면 한 줄 설명 ③ 들리는 말 번역 ④ 음성 질문 답변.
+   - 자동 분석: 화면이 바뀌었을 때만(작은 흑백 이미지 비교) 한 번의 AI 호출로 글자+장면을 함께 받음 → 무료 한도 절약
+   - 질문: 버튼(또는 이어폰 2번)을 누르고 말하면 내 언어로 인식 → 말을 멈추면 화면과 함께 AI에 질문 → 답을 표시·읽기
+   - 화면을 손가락으로 누르면 그 위치를 빨간 원으로 표시해 "이게 뭐야?" 질문
+   - AI: Gemini 키가 있으면 Gemini(글자 위치 정확), 없으면 Groq 비전 모델 */
+let visOn=false,visStream=null,visT=0,visHearT=0,visBusy=false,visNext=0,visGap=0,visRef=null,visLastAt=0,visFacing='environment',
+ visCollect=false,visQText='',visQT=0,visQMax=0,visMarkPt=null,visLastAns='',visNoReason=false,visModelIdx=0,visSeen=new Map(),visAudio=null;
+const visProv=()=>!keyBad(cfg.gKey)?'gemini':!keyBad(cfg.qKey)?'groq':'';
+const visSmall=document.createElement('canvas');visSmall.width=48;visSmall.height=36;
+function visStat(t){const e=$('#visStat');if(e)e.textContent=t}
+function visDiff(){const v=$('#visVid');if(!v.videoWidth)return 0;const c=visSmall.getContext('2d',{willReadFrequently:true});c.drawImage(v,0,0,48,36);
+ const d=c.getImageData(0,0,48,36).data,g=new Uint8Array(48*36);for(let i=0;i<g.length;i++)g[i]=(d[i*4]*3+d[i*4+1]*6+d[i*4+2])/10;
+ if(!visRef)return 1;let sum=0;for(let i=0;i<g.length;i++)sum+=Math.abs(g[i]-visRef[i]);visDiff.cur=g;return sum/g.length/255}
+function visGrab(mark){const v=$('#visVid'),W=v.videoWidth,H=v.videoHeight;if(!W)return null;const k=Math.min(1,1024/Math.max(W,H)),c=document.createElement('canvas');c.width=Math.round(W*k);c.height=Math.round(H*k);
+ const x=c.getContext('2d');x.drawImage(v,0,0,c.width,c.height);if(mark){x.lineWidth=Math.max(4,c.width/160);x.strokeStyle='#ff2a2a';x.beginPath();x.arc(mark.x*c.width,mark.y*c.height,Math.max(28,c.width/18),0,Math.PI*2);x.stroke()}
+ const g=visSmall.getContext('2d',{willReadFrequently:true});g.drawImage(v,0,0,48,36);const d=g.getImageData(0,0,48,36).data,ref=new Uint8Array(48*36);for(let i=0;i<ref.length;i++)ref[i]=(d[i*4]*3+d[i*4+1]*6+d[i*4+2])/10;visRef=ref;
+ return c.toDataURL('image/jpeg',0.72).split(',')[1]}
+async function visionLLM(prompt,b64,json){const pv=visProv();
+ if(pv==='gemini'){const r=await fetchT(`https://generativelanguage.googleapis.com/v1beta/models/${cfg.gModel.trim()}:generateContent`,{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':cfg.gKey},
+   body:JSON.stringify({contents:[{role:'user',parts:[{inline_data:{mime_type:'image/jpeg',data:b64}},{text:prompt}]}],generationConfig:Object.assign({temperature:0.2},json?{responseMimeType:'application/json'}:{})})},25000);
+  const j=await r.json().catch(()=>({}));if(!r.ok){const e=new Error(`Gemini ${r.status}: ${(j.error&&j.error.message||'').slice(0,120)}`);e.code=r.status;throw e}
+  return ((j.candidates&&j.candidates[0]&&j.candidates[0].content&&j.candidates[0].content.parts)||[]).map(p=>p.text||'').join('')}
+ if(pv==='groq'){const models=[...new Set([(cfg.visModel||'').trim()||'qwen/qwen3.8-27b','qwen/qwen3.8-27b','qwen/qwen3.6-27b','meta-llama/llama-4-scout-17b-16e-instruct'])];
+  for(let i=visModelIdx;i<models.length;i++){const body=Object.assign({model:models[i],temperature:0.2,max_completion_tokens:json?900:500,messages:[{role:'user',content:[{type:'text',text:prompt},{type:'image_url',image_url:{url:'data:image/jpeg;base64,'+b64}}]}]},json?{response_format:{type:'json_object'}}:{},visNoReason?{}:{reasoning_effort:'none'});
+   const r=await fetchT('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+cfg.qKey},body:JSON.stringify(body)},25000);
+   const j=await r.json().catch(()=>({}));const msg=(j.error&&j.error.message||'');
+   if(r.ok){visModelIdx=i;return String(j.choices&&j.choices[0]&&j.choices[0].message&&j.choices[0].message.content||'').replace(/<think>[\s\S]*?<\/think>/g,'').trim()}
+   if(r.status===400&&/reasoning/i.test(msg)&&!visNoReason){visNoReason=true;i--;continue}
+   if((r.status===404||r.status===400)&&/model|image|vision|decommission|not (?:found|exist|support)/i.test(msg)){log(`비전 모델 ${models[i]} 사용 불가 → 다음 모델`);continue}
+   const e=new Error(`Groq ${r.status}: ${msg.slice(0,120)}`);e.code=r.status;throw e}
+  throw new Error('Groq에서 사용할 수 있는 비전 모델을 찾지 못함 — 설정 › AI에 Gemini 키를 넣으면 됨')}
+ throw new Error('비전 분석은 Gemini 또는 Groq API 키가 필요함(설정 › AI)')}
+function visCtx(){return segs.filter(x=>x.final&&x.src).slice(-4).map(x=>(x.who==='me'?'나: ':'상대: ')+x.src+(x.tgt&&x.tgt!==x.src?' => '+x.tgt:'')).join('\n')}
+async function visAnalyze(kind,question,mark){if(!visOn)return;const pv=visProv();if(!pv){visStat('AI 키가 없어 화면 분석은 꺼짐 — 들리는 말 번역만 동작');return}
+ if(visBusy&&kind==='auto')return;const b64=visGrab(mark);if(!b64)return;const me=L(myLang()).n,t0=performance.now();
+ if(kind!=='auto'){visBusy=true;$('#visAnsBox').hidden=false;$('#visQ').textContent='Q. '+question;$('#visAns').textContent='분석 중…';visStat('질문 분석 중…')}else visBusy=true;
+ try{if(kind==='auto'){const want=[cfg.visAutoT?'texts':'',cfg.visAutoS?'scene':''].filter(Boolean);if(!want.length)return;
+   const prompt=`You are the vision assistant of smart AI glasses. The user reads ${me}.\nReturn ONLY JSON: {"scene":"${cfg.visAutoS?`one short sentence in ${me} (max 18 words) describing what is visible`:''}","texts":[${cfg.visAutoT?`{"src":"legible text exactly as written","tgt":"natural ${me} translation","box":[ymin,xmin,ymax,xmax]}`:''}]}\n${cfg.visAutoT?`Rules for texts: only clearly legible text (signs, menus, labels, screens, documents); merge lines that belong to the same sign/item; max 10 items; box normalized 0-1000; skip text already in ${me}; [] if none.`:'texts must be [].'}`;
+   const o=parseJSON(await visionLLM(prompt,b64,true));visRender(o);visStat(`${pv==='gemini'?'Gemini':'Groq'} 비전 · ${((performance.now()-t0)/1000).toFixed(1)}초`)}
+  else{const prompt=`You are the assistant inside smart AI glasses, looking through the user's camera (this image).${mark?' The user pointed at the spot marked with a red circle.':''}\nRecent conversation around the user:\n${visCtx()||'(none)'}\n\nUser's request (in ${me}): ${question}\n\nAnswer in ${me}, concise and practical (max 4 short sentences, no markdown). If the request asks to translate text, list each item as "original → ${me} translation".`;
+   const a=(await visionLLM(prompt,b64,false)).replace(/\*\*/g,'').trim();visLastAns=a;$('#visAns').textContent=a||'(답변 없음)';visStat(`답변 · ${((performance.now()-t0)/1000).toFixed(1)}초`);
+   log('비전 질문: '+question.slice(0,40)+' → '+a.slice(0,60));if(a&&cfg.visSpeak)listenPush(a,'',myLang())}
+  visGap=0;visLastAt=Date.now()}
+ catch(e){if(e.code===429){visGap=Math.min(20000,(visGap||3000)*2);visStat(`AI 무료 한도 — ${Math.round(visGap/1000)}초 뒤 재시도`)}else{visStat('분석 오류: '+e.message.slice(0,80));log('vision: '+e.message)}if(kind!=='auto')$('#visAns').textContent='분석 실패 — '+e.message.slice(0,100)}
+ finally{visBusy=false;visNext=Date.now()+Math.max(visProv()==='gemini'?4000:3000,visGap)}}
+function visBoxRect(b){const v=$('#visVid'),W=v.videoWidth,H=v.videoHeight,cw=v.clientWidth,ch=v.clientHeight;if(!W||!Array.isArray(b)||b.length<4)return null;
+ const k=Math.min(cw/W,ch/H),dw=W*k,dh=H*k,ox=v.offsetLeft+(cw-dw)/2,oy=v.offsetTop+(ch-dh)/2,c=x=>Math.max(0,Math.min(1000,+x||0))/1000;
+ const y0=c(b[0]),x0=c(b[1]),y1=c(b[2]),x1=c(b[3]);if(y1<=y0||x1<=x0)return null;return {l:ox+x0*dw,t:oy+y0*dh,w:(x1-x0)*dw,h:(y1-y0)*dh}}
+function visRender(o){const now=Date.now();
+ if(cfg.visAutoS&&o.scene){const sc=$('#visScene');sc.textContent=String(o.scene).trim();sc.classList.remove('dim')}
+ if(!cfg.visAutoT)return;const items=(Array.isArray(o.texts)?o.texts:[]).filter(t=>t&&t.src&&t.tgt&&normTxt(t.src)!==normTxt(t.tgt)).slice(0,10);
+ const lab=$('#visLabels');lab.innerHTML='';const ul=$('#visTexts');
+ if(!items.length){if(!ul.querySelector('li:not(.dim)'))ul.innerHTML='<li class="dim">글자를 비추면 번역이 나옴</li>';return}
+ const fresh=[];ul.innerHTML=items.map(t=>{const k=normTxt(t.src),isNew=!visSeen.has(k)||now-visSeen.get(k)>60000;visSeen.set(k,now);if(isNew)fresh.push(t.tgt);return `<li${isNew?' class="new"':''}><b>${esc(t.tgt)}</b><small>${esc(t.src)}</small></li>`}).join('');
+ for(const t of items){const r=visBoxRect(t.box);if(!r||r.w<14||r.h<8)continue;const d=document.createElement('div');d.textContent=t.tgt;
+  d.style.cssText=`left:${r.l}px;top:${r.t}px;min-width:${r.w}px;max-width:${Math.max(r.w,180)}px;font-size:${Math.max(11,Math.min(22,r.h*0.62))}px`;lab.appendChild(d)}
+ clearTimeout(visRender.t);visRender.t=setTimeout(()=>{lab.querySelectorAll('div').forEach(d=>d.style.opacity='0')},9000);
+ if(cfg.visReadT&&fresh.length)listenPush(fresh.slice(0,4).join('. '),'',myLang())}
+function visHear(){if(!visOn)return;const list=segs.filter(x=>x.final&&x.who!=='me'&&x.tgt&&x.tgt!=='(번역 실패)').slice(-4).reverse();
+ const h=list.map((x,i)=>`<li${i===0&&Date.now()-(x.tEnd||0)<6000?' class="new"':''}><b>${esc(x.tgt)}</b><small>${esc(x.src)}</small></li>`).join('');const ul=$('#visHear');
+ if(h&&ul.innerHTML!==h)ul.innerHTML=h;const sp=segs.find(x=>!x.final&&x.who!=='me'&&x.src);if(sp&&!h)ul.innerHTML=`<li><small>${esc(sp.src)}</small></li>`}
+function visLoop(){if(!visOn||document.hidden)return;const v=$('#visVid');if(!v.videoWidth||visBusy||visCollect)return;
+ if(!(cfg.visAutoT||cfg.visAutoS)||!visProv())return;const now=Date.now();if(now<visNext)return;
+ const d=visDiff();if(d>0.055||now-visLastAt>20000)visAnalyze('auto')}
+async function visCam(){if(visStream)visStream.getTracks().forEach(t=>t.stop());visStream=null;
+ visStream=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:{ideal:visFacing},width:{ideal:1280},height:{ideal:720}}});
+ const v=$('#visVid');v.srcObject=visStream;await v.play().catch(()=>{});visRef=null}
+async function visOpen(){if(visOn)return;$('#moreMenu').hidden=true;$('#vision').hidden=false;visOn=true;visStat('카메라 준비 중…');
+ ['visAutoT','visAutoS','visSpeak'].forEach(k=>{const el=$('#'+k);el.checked=!!cfg[k];el.onchange=()=>{cfg[k]=el.checked;save();if(k!=='visSpeak'){visRef=null;visNext=0}}});
+ try{await visCam()}catch(e){visStat('카메라를 열 수 없음: '+(e.name==='NotAllowedError'?'카메라 권한 허용 필요':e.message));log('vision cam: '+e.message)}
+ unlockTTS();if(!running){try{await start()}catch(_){}}
+ const pv=visProv();visStat(pv?`${pv==='gemini'?'Gemini':'Groq'} 비전 준비됨 · 화면이 바뀌면 자동 분석`:'AI 키가 없어 화면 분석은 꺼짐 — 들리는 말 번역만 동작');
+ if(!cfg.visTold){cfg.visTold=true;save();toast(`비전 모드: 카메라 화면이 ${pv==='gemini'?'Gemini':pv==='groq'?'Groq':'AI'}로 전송되어 분석됨 · 화면을 누르면 그 부분을 물어볼 수 있음`)}
+ clearInterval(visT);visT=setInterval(visLoop,800);clearInterval(visHearT);visHearT=setInterval(visHear,600);visNext=Date.now()+600;
+ if(!pocket&&!NATIVE&&navigator.mediaSession){try{if(!visAudio){visAudio=new Audio(pkSilence());visAudio.loop=true}visAudio.play().catch(()=>{});const ms=navigator.mediaSession,set=(a,f)=>{try{ms.setActionHandler(a,f)}catch(_){}};
+  set('play',()=>pkAct('describe','key'));set('pause',()=>pkAct('describe','key'));set('nexttrack',()=>pkAct('talk','key'));set('previoustrack',()=>pkAct('repeat','key'))}catch(_){}}
+ log('비전 모드 켜짐 ('+(pv||'AI 없음')+')')}
+function visClose(){if(!visOn)return;visOn=false;if(visCollect){visCollect=false;clearTimeout(visQT);clearTimeout(visQMax);if(speaker==='me')setSpeaker('them')}
+ clearInterval(visT);clearInterval(visHearT);if(visStream)visStream.getTracks().forEach(t=>t.stop());visStream=null;$('#visVid').srcObject=null;$('#vision').hidden=true;$('#visLabels').innerHTML='';
+ try{visAudio&&visAudio.pause()}catch(_){}if(!pocket&&!NATIVE&&navigator.mediaSession)['play','pause','nexttrack','previoustrack'].forEach(a=>{try{navigator.mediaSession.setActionHandler(a,null)}catch(_){}});log('비전 모드 꺼짐')}
+/* 음성 질문 */
+function visAskStart(){if(!running){toast('먼저 시작(마이크 허용)이 필요함');return}if(cfg.input==='tab'){toast('음성 질문은 마이크 입력에서만 가능 — 아래 버튼으로 질문');return}
+ visCollect=true;visQText='';$('#visAsk').classList.add('on');$('#visAskLbl').textContent='듣는 중… (말을 멈추면 질문)';visStat(`${L(myLang()).n}로 질문을 말하세요`);
+ if(speaker!=='me')setSpeaker('me');clearTimeout(visQMax);visQMax=setTimeout(()=>visAskEnd(),15000);clearTimeout(visQT);visQT=setTimeout(()=>{if(!visQText)visAskEnd()},7000)}
+function visAddQ(t){visQText=(visQText+' '+t).trim();$('#visAskLbl').textContent=visQText.slice(-24);clearTimeout(visQT);visQT=setTimeout(()=>visAskEnd(),1300)}
+function visAskEnd(){if(!visCollect)return;clearTimeout(visQT);clearTimeout(visQMax);$('#visAsk').classList.remove('on');$('#visAskLbl').textContent='질문하기';
+ if(speaker==='me')setSpeaker('them');setTimeout(()=>{visCollect=false;const q=visQText.trim();visQText='';if(q)visAnalyze('ask',q,visMarkPt);else visStat('질문이 인식되지 않음 — 다시 눌러 말하세요');visMarkPt=null;$('#visMark').hidden=true},800)}
+{const ask=$('#visAsk');let down=0;ask.addEventListener('pointerdown',e=>{e.preventDefault();down=Date.now();if(visCollect){visAskEnd();down=0}else visAskStart()});
+ ask.addEventListener('pointerup',()=>{if(down&&Date.now()-down>600&&visCollect)visAskEnd();down=0});
+ $('#vision').querySelector('.vis-chips').addEventListener('click',e=>{const b=e.target.closest('button[data-q]');if(b)visAnalyze('ask',b.dataset.q,visMarkPt)});
+ $('#visVid').addEventListener('click',e=>{const v=$('#visVid'),W=v.videoWidth,H=v.videoHeight;if(!W)return;const r=v.getBoundingClientRect(),k=Math.min(r.width/W,r.height/H),dw=W*k,dh=H*k,ox=(r.width-dw)/2,oy=(r.height-dh)/2;
+  const x=(e.clientX-r.left-ox)/dw,y=(e.clientY-r.top-oy)/dh;if(x<0||x>1||y<0||y>1)return;visMarkPt={x,y};const m=$('#visMark');m.style.left=(e.clientX-r.left)+'px';m.style.top=(e.clientY-r.top)+'px';m.hidden=false;
+  visAnalyze('ask','빨간 원으로 표시한 부분이 무엇인지 짧게 설명하고, 글자가 있으면 번역해 줘',visMarkPt);setTimeout(()=>{if(!visCollect){m.hidden=true;visMarkPt=null}},6000)});
+ $('#visClose').onclick=visClose;$('#visFlip').onclick=async()=>{visFacing=visFacing==='environment'?'user':'environment';try{await visCam()}catch(e){visStat('카메라 전환 실패: '+e.message)}};
+ $('#visionBtn').onclick=()=>visOpen();document.addEventListener('keydown',e=>{if(visOn&&e.key==='Escape')visClose()})}
+self.WARPS={vision:()=>visOpen(),stop:()=>{if(pocket)pocketOff();if(running)stop()},devs:detectPhones,toast:m=>toast(m),log:m=>log(m),act:pkAct,pocketOn,pocketOff,state:()=>({running,paused:pkPaused,pocket,talk:speaker==='me'})};
 let ttsUnlocked=false;function unlockTTS(){if(ttsUnlocked||!('speechSynthesis' in self))return;ttsUnlocked=true;try{const u=new SpeechSynthesisUtterance(' ');u.volume=0;speechSynthesis.speak(u)}catch(_){}}
 $('#run').onclick=()=>{unlockTTS();if(running){stop();if(segs.filter(s=>s.final).length>=3)banner(['정지함 — 지금까지 내용을 회의록으로 정리해 .txt로 저장할 수 있음.'],{label:'회의록 만들기',fn:openMinutes})}else start()};
 $('#srcLang').onchange=e=>{cfg.src=e.target.value;relang()};
