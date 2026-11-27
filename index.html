@@ -151,7 +151,7 @@ main[data-view=chat] #paneSrc,main[data-view=chat] #paneTgt,main[data-view=split
 .row.spoken p::after{content:' 🔊';font-size:.8em;opacity:.7}body.meOn .hold{background:var(--live);color:#fff;border-color:var(--live)}body.meOn .hold kbd{background:rgb(255 255 255/.2);color:#fff;border-color:transparent}
 .dcenter{position:relative}
 #vision{position:fixed;inset:0;z-index:99998;background:#000;color:#fff;overflow:hidden;font-size:15px}#vision[hidden]{display:none}
-#visVid{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
+#visVid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000}
 #visLabels{position:absolute;inset:0;pointer-events:none}
 #visLabels div{position:absolute;background:rgba(0,0,0,.72);color:#fff;border:1px solid rgba(80,220,160,.85);border-radius:6px;padding:2px 6px;line-height:1.25;font-weight:600;overflow:hidden;text-shadow:0 1px 2px #000;transition:opacity .4s}
 #visMark{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border:3px solid #ff3b30;border-radius:50%;pointer-events:none;box-shadow:0 0 0 2px rgba(0,0,0,.4)}
@@ -159,7 +159,7 @@ main[data-view=chat] #paneSrc,main[data-view=chat] #paneTgt,main[data-view=split
 .vis-top button{background:rgba(255,255,255,.14);color:#fff;border:0;border-radius:999px;min-width:38px;height:38px;font-size:17px}
 #visStat{flex:1;font-size:13px;color:#cfe;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .vis-tg{display:flex;align-items:center;gap:4px;font-size:13px;background:rgba(255,255,255,.12);padding:6px 9px;border-radius:999px;white-space:nowrap}
-#visPanel{position:absolute;top:58px;right:0;bottom:96px;width:min(42%,470px);padding:10px 14px;overflow-y:auto;background:linear-gradient(to left,rgba(0,0,0,.78),rgba(0,0,0,.45));display:flex;flex-direction:column;gap:12px;z-index:1}
+#visPanel{position:absolute;top:58px;right:0;bottom:84px;width:min(38%,440px);padding:8px 12px;overflow-y:auto;background:linear-gradient(to left,rgba(0,0,0,.62),rgba(0,0,0,.18));text-shadow:0 1px 3px #000;display:flex;flex-direction:column;gap:12px;z-index:1}
 #visPanel h6{margin:0 0 4px;font-size:12px;color:#8fd;letter-spacing:.5px;font-weight:600}
 #visPanel ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
 #visPanel li b{display:block;font-size:16px;font-weight:600;line-height:1.35}#visPanel li small{display:block;font-size:12px;color:#aab;line-height:1.3}
@@ -169,7 +169,8 @@ main[data-view=chat] #paneSrc,main[data-view=chat] #paneTgt,main[data-view=split
 .vis-chips{flex:1;display:flex;flex-wrap:wrap;gap:6px}.vis-chips button{background:rgba(255,255,255,.15);color:#fff;border:0;border-radius:999px;padding:8px 12px;font-size:13px}
 #visAsk{flex:0 0 auto;display:flex;align-items:center;gap:6px;background:#1f8f5f;color:#fff;border:0;border-radius:999px;padding:14px 20px;font-size:16px;font-weight:600;touch-action:none}
 #visAsk.on{background:#d33;animation:visPulse 1s infinite}@keyframes visPulse{50%{box-shadow:0 0 0 8px rgba(221,51,51,.25)}}
-@media (max-aspect-ratio:1/1){#visVid{height:calc(58% - 118px)}#visPanel{top:auto;left:0;right:0;width:auto;height:42%;bottom:118px;background:linear-gradient(to top,rgba(0,0,0,.8),rgba(0,0,0,.4))}.vis-tg{padding:5px 7px;font-size:12px}.vis-bot{flex-direction:column;align-items:stretch}#visAsk{justify-content:center}}#pocket{position:fixed;inset:0;z-index:99999;background:#000;color:#5a5a5a;display:flex;align-items:center;justify-content:center;text-align:center;touch-action:none;user-select:none;-webkit-user-select:none}#pocket[hidden]{display:none}#pocket .pk-in{max-width:420px;padding:24px;display:flex;flex-direction:column;gap:14px;align-items:center}#pkClock{font-size:44px;font-weight:300;color:#666;letter-spacing:2px}#pkStat{font-size:15px;color:#4a7}#pkStat.off{color:#a65}#pkLast{min-height:3.2em;font-size:17px;line-height:1.5;color:#777;margin:0}#pkUnlock{margin-top:18px;width:150px;height:150px;border-radius:50%;border:2px solid #333;background:transparent;color:#666;font-size:13px;position:relative;overflow:hidden}#pkUnlock i{position:absolute;left:0;bottom:0;width:100%;height:0;background:#1d3a2a}#pkUnlock.hold i{height:100%;transition:height 1.2s linear}#pkUnlock span{position:relative}#pocket small{color:#444;font-size:12px;line-height:1.6}.omenu .lrow{display:flex;align-items:center;gap:10px;padding:6px 10px}.omenu .lrow>span{flex:0 0 112px;display:flex;flex-direction:column;line-height:1.25}.omenu .lrow>span i{font-style:normal;white-space:nowrap}.omenu .lbtns button{flex-wrap:wrap}.omenu .lbtns button small{flex-basis:100%;padding-left:28px}.omenu .lrow>span small{opacity:.65;font-size:11px}.omenu .lrow select{flex:1;min-width:0;padding:7px 8px;border-radius:8px}.omenu .lbtns{display:flex;flex-direction:column}.menu.omenu{left:auto;right:0;transform:none;width:min(400px,94vw);min-width:0;max-height:70vh;overflow:auto}.menu.omenu button{align-items:center;text-align:left;white-space:normal;min-height:40px}.menu.omenu button>span:nth-child(2){flex:1;min-width:0;overflow-wrap:anywhere;line-height:1.35}.menu.omenu button small{flex:none;white-space:nowrap;margin-left:8px}.omenu h5{margin:8px 10px 4px;font-size:12px;color:var(--mute);font-weight:700}.omenu button{gap:8px}.omenu button .ck{width:16px;flex:none;color:var(--acc);font-weight:800}.omenu button small{margin-left:auto;color:var(--mute);font-size:11.5px}.omenu .note{font-size:11.5px;color:var(--mute);padding:6px 10px 4px;line-height:1.45}.omenu hr{border:0;border-top:1px solid var(--line);margin:4px 0}
+#vision.nopanel #visPanel{display:none}
+@media (max-aspect-ratio:1/1){#visPanel{top:auto;left:0;right:0;width:auto;max-height:34%;height:auto;bottom:112px;background:linear-gradient(to top,rgba(0,0,0,.7),rgba(0,0,0,0))}#visPanel li small{display:none}#visPanel section:has(.dim:only-child){display:none}.vis-tg{padding:5px 7px;font-size:12px}.vis-bot{flex-direction:column;align-items:stretch}#visAsk{justify-content:center}}#pocket{position:fixed;inset:0;z-index:99999;background:#000;color:#5a5a5a;display:flex;align-items:center;justify-content:center;text-align:center;touch-action:none;user-select:none;-webkit-user-select:none}#pocket[hidden]{display:none}#pocket .pk-in{max-width:420px;padding:24px;display:flex;flex-direction:column;gap:14px;align-items:center}#pkClock{font-size:44px;font-weight:300;color:#666;letter-spacing:2px}#pkStat{font-size:15px;color:#4a7}#pkStat.off{color:#a65}#pkLast{min-height:3.2em;font-size:17px;line-height:1.5;color:#777;margin:0}#pkUnlock{margin-top:18px;width:150px;height:150px;border-radius:50%;border:2px solid #333;background:transparent;color:#666;font-size:13px;position:relative;overflow:hidden}#pkUnlock i{position:absolute;left:0;bottom:0;width:100%;height:0;background:#1d3a2a}#pkUnlock.hold i{height:100%;transition:height 1.2s linear}#pkUnlock span{position:relative}#pocket small{color:#444;font-size:12px;line-height:1.6}.omenu .lrow{display:flex;align-items:center;gap:10px;padding:6px 10px}.omenu .lrow>span{flex:0 0 112px;display:flex;flex-direction:column;line-height:1.25}.omenu .lrow>span i{font-style:normal;white-space:nowrap}.omenu .lbtns button{flex-wrap:wrap}.omenu .lbtns button small{flex-basis:100%;padding-left:28px}.omenu .lrow>span small{opacity:.65;font-size:11px}.omenu .lrow select{flex:1;min-width:0;padding:7px 8px;border-radius:8px}.omenu .lbtns{display:flex;flex-direction:column}.menu.omenu{left:auto;right:0;transform:none;width:min(400px,94vw);min-width:0;max-height:70vh;overflow:auto}.menu.omenu button{align-items:center;text-align:left;white-space:normal;min-height:40px}.menu.omenu button>span:nth-child(2){flex:1;min-width:0;overflow-wrap:anywhere;line-height:1.35}.menu.omenu button small{flex:none;white-space:nowrap;margin-left:8px}.omenu h5{margin:8px 10px 4px;font-size:12px;color:var(--mute);font-weight:700}.omenu button{gap:8px}.omenu button .ck{width:16px;flex:none;color:var(--acc);font-weight:800}.omenu button small{margin-left:auto;color:var(--mute);font-size:11.5px}.omenu .note{font-size:11.5px;color:var(--mute);padding:6px 10px 4px;line-height:1.45}.omenu hr{border:0;border-top:1px solid var(--line);margin:4px 0}
 .lbtn{display:inline-flex;align-items:center;gap:6px}.lbtn svg{width:17px;height:17px}.lbtn.on{background:var(--accSoft,rgba(58,107,240,.12));color:var(--accSoftInk,var(--acc));border-color:var(--accLine,var(--acc))}.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media(max-width:820px){.lbtn span{display:none}.menu.omenu{position:fixed;left:3vw;right:3vw;bottom:78px;width:auto;max-height:65vh}}
 .sum li.nw{background:var(--accSoft,rgba(58,107,240,.12));border-radius:6px;animation:nwf 2.5s ease-out forwards}@keyframes nwf{0%{background:var(--accSoft,rgba(58,107,240,.25))}100%{background:transparent}}
@@ -295,7 +296,7 @@ body.sub #feedTgt .row{grid-template-columns:minmax(0,1fr) 30px}body.sub #feedTg
 </head>
 <body>
 <header class="top">
-  <div class="brand"><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2"/></svg></span><b>WARPS</b><span class="rt">Real-time</span><small>실시간 통역</small><span class="ver" id="verTag" title="앱 버전">v1.2.14</span></div>
+  <div class="brand"><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2"/></svg></span><b>WARPS</b><span class="rt">Real-time</span><small>실시간 통역</small><span class="ver" id="verTag" title="앱 버전">v1.2.17</span></div>
   <div class="pill" id="livePill"><i></i><span id="stat">대기</span><span id="timer"></span></div>
   <span class="sp top-sp"></span>
   <div class="langs">
@@ -488,7 +489,7 @@ body.sub #feedTgt .row{grid-template-columns:minmax(0,1fr) 30px}body.sub #feedTg
     <div id="testOut"></div>
     <div class="dl">
       <button type="button" id="testBtn" class="ghost">연결 테스트</button>
-      <span class="sp"></span><small class="hint" id="cfgVer" style="margin-right:8px">WARPS Real-time v1.2.14</small>
+      <span class="sp"></span><small class="hint" id="cfgVer" style="margin-right:8px">WARPS Real-time v1.2.17</small>
       <button value="cancel" type="submit" class="ghost">닫기</button>
       <button class="primary" type="submit" value="save">저장</button>
     </div>
@@ -571,6 +572,7 @@ body.sub #feedTgt .row{grid-template-columns:minmax(0,1fr) 30px}body.sub #feedTg
     <label class="vis-tg"><input type="checkbox" id="visAutoT"> 글자</label>
     <label class="vis-tg"><input type="checkbox" id="visAutoS"> 장면</label>
     <label class="vis-tg"><input type="checkbox" id="visSpeak"> 읽기</label>
+    <button type="button" id="visPanelBtn" title="번역 패널 숨기기/보이기">▤</button>
     <button type="button" id="visFlip">⟲</button>
   </div>
   <aside id="visPanel">
@@ -648,7 +650,10 @@ function download(name,text,type){const a=document.createElement('a');a.href=URL
  document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},800);toast('저장됨: '+name)}
 function stamp(){const d=new Date(),p=n=>String(n).padStart(2,'0');return `${d.getFullYear()}${p(d.getMonth()+1)}${p(d.getDate())}_${p(d.getHours())}${p(d.getMinutes())}`}
 
-function fetchT(url,opt,ms){const c=new AbortController(),t=setTimeout(()=>c.abort(),ms);return fetch(url,Object.assign({},opt||{},{signal:c.signal})).finally(()=>clearTimeout(t))}
+/* 모든 일반 네트워크 호출: 응답 헤더뿐 아니라 본문까지 ms 안에 다 받아야 함 → 연결이 중간에 멈춰도 영원히 기다리지 않음 */
+async function fetchT(url,opt,ms){const c=new AbortController(),t=setTimeout(()=>c.abort(),ms);
+ try{const r=await fetch(url,Object.assign({},opt||{},{signal:c.signal}));const buf=await r.arrayBuffer();return new Response(buf,{status:r.status,statusText:r.statusText,headers:r.headers})}
+ catch(e){if(e&&e.name==='AbortError'){const x=new Error('응답 지연('+Math.round(ms/1000)+'초 초과)');x.name='AbortError';throw x}throw e}finally{clearTimeout(t)}}
 /* ---------- 환경 ---------- */
 function browserInfo(){const ua=navigator.userAgent;let n='Chrome';if(navigator.brave)n='Brave';else if(/Whale\//.test(ua))n='Whale';else if(/Edg\//.test(ua))n='Edge';else if(/OPR\//.test(ua))n='Opera';else if(/SamsungBrowser/.test(ua))n='Samsung Internet';else if(/Firefox\//.test(ua))n='Firefox';else if(!/Chrome\//.test(ua))n='기타';
  return {name:n,v:(ua.match(/(?:Chrome|Firefox)\/(\d+)/)||[])[1]||'',android:/Android/.test(ua)}}
@@ -849,7 +854,7 @@ function interimTr(s){if(itTimer)return;itTimer=setTimeout(async()=>{itTimer=0;i
 async function translateFinal(s){const v=++s.v,t0=performance.now();s.pending=true;s.refined=false;paint(s);
  try{const out=await translate(s.src,...dirOf(s),true);if(v!==s.v)return;if(!s.refined)s.tgt=out;latTR=`번역 ${Math.round(performance.now()-t0)}ms`;showLat()}
  catch(e){if(v!==s.v)return;if(!s.tgt)s.tgt='(번역 실패)';log('translate error: '+e.message);toast('번역 실패: '+e.message)}
- s.pending=false;paint(s);engLabel();if(s.who!=='me'&&listenActive()&&!s.said){if(fuseOn()&&refineWanted()&&!s.trivial&&!s.refined){clearTimeout(s.lsT);s.lsT=setTimeout(()=>listenSay(s),1300)}else listenSay(s)}
+ s.pending=false;paint(s);engLabel();if(s.who!=='me'&&listenActive()&&!s.said){if(!pocket&&fuseOn()&&refineWanted()&&!s.trivial&&!s.refined){clearTimeout(s.lsT);s.lsT=setTimeout(()=>listenSay(s),1300)}else listenSay(s)}
  if(s.who==='me'&&!s.tts&&cfg.meSpeak&&!holding()){if(meLive())liveMine();else{clearTimeout(meSpeakT);meSpeakT=setTimeout(()=>speakMine(1),300)}}
  if(!fuseOn()&&cfg.refine&&hasLLM()&&cfg.tr!=='llm'&&cfg.style!=='literal'&&s.tgt&&s.tgt!=='(번역 실패)')queueRefine(s)}
 /* AI 다듬기: 기계번역 → 문맥을 반영한 자연스러운 의역 (여러 문장 묶어서 1회 호출) */
@@ -892,7 +897,7 @@ function parseJSON(t){t=String(t).replace(/```(?:json)?/g,'');const a=t.indexOf(
 const LQ=[];let lqBusy=false,lqLast=0,lqPen=0;
 function lq(prio,fn){return new Promise((res,rej)=>{LQ.push({prio,fn,res,rej});LQ.sort((a,b)=>a.prio-b.prio);pump()})}
 function pump(){if(lqBusy||!LQ.length)return;const base=cfg.llm==='groq'?1200:2600,gap=(LQ[0].prio===0?base*0.55:base)+lqPen-(Date.now()-lqLast);if(gap>0){setTimeout(pump,gap);return}
- lqBusy=true;const j=LQ.shift();lqLast=Date.now();Promise.resolve().then(j.fn).then(r=>{lqPen=Math.max(0,lqPen-1500);j.res(r)},e=>{if(/429|RESOURCE_EXHAUSTED|rate.?limit|quota/i.test(e&&e.message||'')){lqPen=Math.min(20000,lqPen?lqPen*2:4000);log('AI 한도 → 호출 간격 +'+lqPen+'ms')}j.rej(e)}).finally(()=>{lqBusy=false;pump()})}
+ lqBusy=true;const j=LQ.shift();lqLast=Date.now();Promise.race([Promise.resolve().then(j.fn),new Promise((_,rj)=>setTimeout(()=>rj(new Error('AI 작업 45초 초과 — 건너뜀')),45000))]).then(r=>{lqPen=Math.max(0,lqPen-1500);j.res(r)},e=>{if(/429|RESOURCE_EXHAUSTED|rate.?limit|quota/i.test(e&&e.message||'')){lqPen=Math.min(20000,lqPen?lqPen*2:4000);log('AI 한도 → 호출 간격 +'+lqPen+'ms')}j.rej(e)}).finally(()=>{lqBusy=false;pump()})}
 
 /* ---------- 통합 AI 호출 (Code Mode 원리) ----------
    문장마다 '다듬기'·'추천 답변'을 따로 왕복하던 것을 1회 호출로 합치고, 스트리밍으로 받으면서
@@ -907,28 +912,28 @@ function queueFuse(x){if(trivial(x)){x.trivial=true;return}x.trivial=false;FQ.ad
 /* 스트리밍 중인 JSON에서 "key":[ "...", "..." ] 의 완성된 문자열만 꺼냄 */
 function partialStrings(txt,key){const k=txt.indexOf('"'+key+'"');if(k<0)return [];let i=txt.indexOf('[',k);if(i<0)return [];const out=[];let inS=false,esc=false,st=0;
  for(i=i+1;i<txt.length;i++){const c=txt[i];if(inS){if(esc)esc=false;else if(c==='\\')esc=true;else if(c==='"'){inS=false;try{out.push(JSON.parse(txt.slice(st,i+1)))}catch(_){}}}else if(c==='"'){inS=true;st=i}else if(c===']')break}return out}
-async function readSSE(r,onData){if(!r.body||!r.body.getReader){const t=await r.text();t.split('\n').forEach(l=>{if(l.startsWith('data:'))onData(l.slice(5).trim())});return}
- const rd=r.body.getReader(),dec=new TextDecoder();let buf='';for(;;){const {done,value}=await rd.read();if(done)break;buf+=dec.decode(value,{stream:true});let n;while((n=buf.indexOf('\n'))>=0){const l=buf.slice(0,n).trim();buf=buf.slice(n+1);if(l.startsWith('data:'))onData(l.slice(5).trim())}}
+async function readSSE(r,onData,onChunk){if(!r.body||!r.body.getReader){const t=await r.text();t.split('\n').forEach(l=>{if(l.startsWith('data:'))onData(l.slice(5).trim())});return}
+ const rd=r.body.getReader(),dec=new TextDecoder();let buf='';for(;;){const {done,value}=await rd.read();if(done)break;if(onChunk)onChunk();buf+=dec.decode(value,{stream:true});let n;while((n=buf.indexOf('\n'))>=0){const l=buf.slice(0,n).trim();buf=buf.slice(n+1);if(l.startsWith('data:'))onData(l.slice(5).trim())}}
  if(buf.trim().startsWith('data:'))onData(buf.trim().slice(5).trim())}
 /* 스트리밍 LLM: 조각이 올 때마다 onText(지금까지 전체 텍스트) 호출, 끝나면 전체 텍스트 반환 */
 async function llmStream(system,user,onText){let acc='';const push=t=>{if(!t)return;acc+=t;try{onText&&onText(acc)}catch(_){}};
- const c=new AbortController(),to=setTimeout(()=>c.abort(),30000);
+ const c=new AbortController(),to=setTimeout(()=>c.abort(),20000);let idle=setTimeout(()=>c.abort(),9000);const alive=()=>{clearTimeout(idle);idle=setTimeout(()=>{log('AI 스트림 6초 정체 → 중단하고 다음으로');c.abort()},6000)};
  try{if(cfg.llm==='gemini'){if(keyBad(cfg.gKey))throw new Error('Gemini API 키 필요(설정)');
    const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${cfg.gModel.trim()}:streamGenerateContent?alt=sse`,{method:'POST',signal:c.signal,headers:{'Content-Type':'application/json','x-goog-api-key':cfg.gKey},
     body:JSON.stringify({systemInstruction:{parts:[{text:system}]},contents:[{role:'user',parts:[{text:user}]}],generationConfig:{temperature:0.5,responseMimeType:'application/json'}})});
    if(!r.ok){const j=await r.json().catch(()=>({}));throw new Error(`Gemini ${r.status}: ${(j.error&&j.error.message||'').slice(0,140)}`)}
-   await readSSE(r,d=>{try{const j=JSON.parse(d);push(((j.candidates&&j.candidates[0]&&j.candidates[0].content&&j.candidates[0].content.parts)||[]).map(p=>p.text||'').join(''))}catch(_){}})}
+   alive();await readSSE(r,d=>{try{const j=JSON.parse(d);push(((j.candidates&&j.candidates[0]&&j.candidates[0].content&&j.candidates[0].content.parts)||[]).map(p=>p.text||'').join(''))}catch(_){}},alive)}
   else{if(keyBad(cfg.qKey))throw new Error('Groq API 키 필요(설정)');
    const r=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',signal:c.signal,headers:{'Content-Type':'application/json',Authorization:'Bearer '+cfg.qKey},
     body:JSON.stringify({model:cfg.qModel.trim(),temperature:0.5,stream:true,messages:[{role:'system',content:system},{role:'user',content:user}]})});
    if(!r.ok){const j=await r.json().catch(()=>({}));throw new Error(`Groq ${r.status}: ${(j.error&&j.error.message||'').slice(0,140)}`)}
-   await readSSE(r,d=>{if(d==='[DONE]')return;try{const j=JSON.parse(d);push(j.choices&&j.choices[0]&&j.choices[0].delta&&j.choices[0].delta.content||'')}catch(_){}})}}
- finally{clearTimeout(to)}
+   alive();await readSSE(r,d=>{if(d==='[DONE]')return;try{const j=JSON.parse(d);push(j.choices&&j.choices[0]&&j.choices[0].delta&&j.choices[0].delta.content||'')}catch(_){}},alive)}}
+ finally{clearTimeout(to);clearTimeout(idle)}
  if(!acc.trim())throw new Error('AI 스트림 응답 없음');return acc}
 async function runFuse(){if(fqBusy||!FQ.size)return;fqBusy=true;let items=[],wantT=false,wantR=false;
  try{await lq(0,async()=>{[...FQ].forEach(x=>{if(!segs.includes(x)||!x.final)FQ.delete(x)});const all=[...FQ];if(!all.length)return;
   const first=all[0];items=all.filter(x=>x.who===first.who).slice(0,6);items.forEach(x=>FQ.delete(x));
-  wantT=refineWanted();wantR=first.who!=='me'&&cfg.auto;const wantS=!!cfg.sumAuto;if(!wantT&&!wantR&&!wantS)return;
+  wantT=refineWanted();wantR=first.who!=='me'&&cfg.auto&&!pocket;const wantS=!!cfg.sumAuto;if(!wantT&&!wantR&&!wantS)return;
   const vers=items.map(x=>x.v),[from,to]=dirOf(first),S=L(from),T=L(to),sc=first.who==='me'?(first.flip?from:to):from,tc=myLang()!==sc?myLang():(cfg.tgt!==sc?cfg.tgt:cfg.src),RS=L(sc),RT=L(tc),n=Math.min(5,Math.max(2,+cfg.n||3)),pr=wantR&&pronOn(sc,tc);
   const ctx=segs.filter(x=>x.final&&!items.includes(x)).slice(-6).map(x=>`${x.who==='me'?'USER':'OTHER'}: ${x.src.slice(0,220)}${x.tgt?'  =>  '+x.tgt.slice(0,220):''}`).join('\n');
   const keys=[wantT&&'"t"',wantR&&'"gist"',wantR&&'"replies"',wantS&&'"sum"'].filter(Boolean).join(', ');
@@ -1033,8 +1038,8 @@ const listenActive=()=>pocket||cfg.listen==='on'||(cfg.listen==='auto'&&phones==
 function listenUI(){const b=$('#listenBtn');if(b){const on=listenActive();b.classList.toggle('on',on);b.setAttribute('aria-pressed',on);b.title=on?`듣기 켜짐 → ${cfg.listen==='on'?devLabel('listenDev'):'자동(이어폰)'} — 눌러서 장치 선택`:'눌러서 듣기 출력 장치 선택';const sp=b.querySelector('span');if(sp)sp.textContent=on&&cfg.listen==='on'&&cfg.listenDev?'듣기·장치':'듣기'}
  const el=$('#phoneInfo');if(el)el.textContent=phoneLbl?`현재 출력 장치: ${phoneLbl.replace(/^(Default|기본값)\s*-\s*/,'')}${phones==='yes'?' — 이어폰으로 인식됨':' — 스피커로 인식됨'}`:'출력 장치 이름은 마이크 권한을 허용한 뒤 확인됨'}
 function sexOfSeg(x){if(x.f0)themSex=x.f0<F0CUT?'m':'f';return themSex}
-function listenSay(x){if(!x||x.said||x.who==='me'||x.tts||!listenActive())return;clearTimeout(x.lsT);const t=x.tgt;if(!t||t==='(번역 실패)')return;if(pocket){const pl=$('#pkLast');if(pl)pl.textContent=t}x.said=true;listenPush(t,sexOfSeg(x),dirOf(x)[1])}
-function listenPush(text,sex,lang){LSQ.push({text,sex,lang,t:Date.now()});if(!lsWarned&&cfg.input==='mic'&&phones!=='yes'){lsWarned=true;toast('스피커로 들으면 마이크가 번역 음성을 다시 받아 적을 수 있음 — 이어폰 권장')}listenNext()}
+function listenSay(x){if(!x||x.said||x.who==='me'||x.tts||!listenActive())return;clearTimeout(x.lsT);const t=x.tgt;if(!t||t==='(번역 실패)')return;if(pocket){const pl=$('#pkLast');if(pl)pl.textContent=t}x.said=true;listenPush(t,sexOfSeg(x),dirOf(x)[1],x.tEnd||x.t0||0)}
+function listenPush(text,sex,lang,ord){const it={text,sex,lang,t:Date.now(),ord:ord||Date.now()};let i=LSQ.length;while(i>0&&!LSQ[i-1].rep&&(LSQ[i-1].ord||0)>it.ord)i--;LSQ.splice(i,0,it);if(!lsWarned&&cfg.input==='mic'&&phones!=='yes'){lsWarned=true;toast('스피커로 들으면 마이크가 번역 음성을 다시 받아 적을 수 있음 — 이어폰 권장')}listenNext()}
 let lsDrop=0;
 /* 읽기 속도: 기본 속도 + 대기 문장 수·문장 길이에 따라 가속(최대 2배) — 말이 많이 들어와도 밀리지 않게 */
 function lsRate(it){const base=+cfg.lRate||1.15,q=LSQ.length,age=(Date.now()-it.t)/1000;return Math.min(2,+(base+q*0.2+(it.text.length>70?0.15:0)+(age>3?0.15:0)).toFixed(2))}
@@ -1161,7 +1166,7 @@ function startWeb(track){const SR=window.SpeechRecognition||window.webkitSpeechR
 
 /* ---------- 로컬 AI 워커 (transformers.js · 모델은 PC 고정 폴더에 1회 저장) ---------- */
 const TJS='3.8.1';
-const APP_VER='1.2.14';
+const APP_VER='1.2.17';
 let LAUNCHER=null,beatT=0,SRV={},mobWarned=false;
 /* 화면(웹 파일) 버전과 설치된 실행기 버전이 다르면 이전 화면이 남아 있는 것 → 경고 */
 /* 창 크기·위치 기억: 다음 실행 때 같은 크기로 열림(설치형) */
@@ -1284,7 +1289,17 @@ async function startVad(stream){
 let agcEnv=0.02,agcG=1;
 function agc(f){let e=0;for(let i=0;i<f.length;i++)e+=f[i]*f[i];const r=Math.sqrt(e/f.length);if(r>0.004)agcEnv=agcEnv*(r>agcEnv?0.7:0.995)+r*(r>agcEnv?0.3:0.005);
  const want=Math.max(1,Math.min(12,0.07/Math.max(agcEnv,0.004)));agcG=agcG*0.9+want*0.1;if(agcG>1.05)for(let i=0;i<f.length;i++){const v=f[i]*agcG;f[i]=v>0.98?0.98:v<-0.98?-0.98:v}return f}
-function onAudio16(f){if(!running)return;if(gated())f=new Float32Array(f.length);else f=agc(f);let e=0;for(let i=0;i<f.length;i++)e+=f[i]*f[i];setLevel(Math.sqrt(e/f.length));
+/* 앱 입력 감시: ① 소리 프레임이 4초 넘게 안 오면 녹음 재시작 ② 5초 넘게 완전 무음(0)이면 마이크가 막힌 것 → 재시작 ③ VAD가 3초 넘게 응답 없으면 에너지 VAD로 전환
+   20초마다 입력 요약을 진단 로그에 남김 */
+let pcmAt=0,pcmZeroAt=0,pcmStat={n:0,max:0,zero:0,seg:0,t:0},healAt=0,healN=0;
+function inWatch(){if(!running||!self.WarpsNative||sttNow==='web'||!('__pcmSink' in self)||!self.__pcmSink)return;const now=Date.now();
+ if(V.pend.length&&V.pend[0].p===null&&now-(V.pend[0].at||now)>3000){log(`VAD 응답 없음(대기 ${V.pend.length}) → 에너지 VAD로 전환`);vadReady=false;V.pend.forEach(x=>{if(x.p===null)x.p=0});drainPend()}
+ const stale=now-pcmAt>4000&&!paused&&!pkPaused,zero=pcmZeroAt&&now-pcmZeroAt>5000&&!gated()&&!paused;
+ if((stale||zero)&&now-healAt>8000){healAt=now;healN++;log(stale?`앱 입력: ${((now-pcmAt)/1000).toFixed(0)}초간 소리가 안 들어옴 → 녹음 재시작(${healN})`:`앱 입력: 완전 무음 신호 ${((now-pcmZeroAt)/1000).toFixed(0)}초 — 다른 앱이 마이크를 쓰는 중일 수 있음 → 녹음 재시작(${healN})`);
+  pcmAt=now;pcmZeroAt=0;try{WarpsNative.restartAudio(localStorage.getItem('warps.nin')||'phone')}catch(e){log('재시작 실패: '+e.message)}if(healN===3)toast('마이크 소리가 계속 끊김 — 다른 앱(음성 비서·통화·녹음)이 마이크를 쓰는지 확인')}
+ if(now-pcmStat.t>20000){if(pcmStat.t)log(`앱 입력 20초: 소리 ${(pcmStat.n/16000).toFixed(1)}초 · 최대 음량 ${pcmStat.max.toFixed(3)} · 무음 ${(pcmStat.zero/16000).toFixed(1)}초 · 인식 구간 ${pcmStat.seg}개${paused?' · 일시정지 중':''}${gated()?' · 읽는 중 차단':''}`);pcmStat={n:0,max:0,zero:0,seg:0,t:now}}}
+setInterval(inWatch,1000);
+function onAudio16(f){if(!running)return;{const now=Date.now();pcmAt=now;let mx=0;for(let i=0;i<f.length;i++){const a=f[i]<0?-f[i]:f[i];if(a>mx)mx=a}pcmStat.n+=f.length;if(mx>pcmStat.max)pcmStat.max=mx;if(mx===0){pcmStat.zero+=f.length;if(!pcmZeroAt)pcmZeroAt=now}else pcmZeroAt=0}if(gated())f=new Float32Array(f.length);else f=agc(f);let e=0;for(let i=0;i<f.length;i++)e+=f[i]*f[i];setLevel(Math.sqrt(e/f.length));
  for(let i=0;i<f.length;i++){V.fb[V.fbN++]=f[i];if(V.fbN===512){pushFrame(V.fb.slice(0));V.fbN=0}}}
 function onAudio(f){if(!audioCtx)return;if(gated())f=new Float32Array(f.length);let e=0;for(let i=0;i<f.length;i++)e+=f[i]*f[i];setLevel(Math.sqrt(e/f.length));
  const ratio=audioCtx.sampleRate/16000,q=new Float32Array(V.rsQ.length+f.length);q.set(V.rsQ);q.set(f,V.rsQ.length);let pos=V.rsPos;
@@ -1292,7 +1307,7 @@ function onAudio(f){if(!audioCtx)return;if(gated())f=new Float32Array(f.length);
   if(V.fbN===512){pushFrame(V.fb.slice(0));V.fbN=0}}
  const d=Math.floor(pos);V.rsQ=q.slice(d);V.rsPos=pos-d}
 function pushFrame(buf){if(paused){if(V.on)flushVad();return}
- if(vadReady&&!V.skip){V.pend.push({buf,p:null});vadW.postMessage({t:'f',buf});if(V.pend.length>24){V.skip=true;log('VAD 지연 → 일시적으로 에너지 VAD 사용')}return}
+ if(vadReady&&!V.skip){V.pend.push({buf,p:null,at:Date.now()});vadW.postMessage({t:'f',buf});if(V.pend.length>24){V.skip=true;log('VAD 지연 → 일시적으로 에너지 VAD 사용')}return}
  let e=0;for(let i=0;i<buf.length;i++)e+=buf[i]*buf[i];const rms=Math.sqrt(e/buf.length),thr=Math.max(0.008,V.noise*3.2);if(rms<thr)V.noise=V.noise*0.995+rms*0.005;
  V.pend.push({buf,p:rms>thr?0.9:(rms>thr*0.8?0.2:0)});drainPend()}
 function drainPend(){while(V.pend.length&&V.pend[0].p!==null){const x=V.pend.shift();vadStep(x.buf,x.p)}if(V.skip&&!V.pend.some(x=>x.p===null))V.skip=false}
@@ -1301,8 +1316,8 @@ function vadStep(buf,p){if(!running)return;const speech=p>0.3||(V.on&&p>=0.1);
   if(speech){V.on=true;V.seg=V.prev;V.probs=V.pprev;V.prev=[];V.pprev=[];V.segLen=V.seg.length*512;V.sil=0;V.lastInt=performance.now();V.s=newSeg(speaker);V.s.wait=true;paint(V.s);status('듣는 중 · 음성 감지')}return}
  V.seg.push(buf);V.probs.push(p);V.segLen+=512;if(speech)V.sil=0;else V.sil+=512;
  /* 긴 발화일수록 짧은 숨 고르기에서도 끊어 바로 처리 → 다 듣고 나서 번역하는 지연 제거 */
- const secs=V.segLen/16000,base=Math.max(250,+cfg.sil||450),silMs=secs<2.5?base:secs<5?Math.min(base,300):Math.min(base,200);
- const maxSec=(sttNow==='local'?(asrDev==='webgpu'?7:5.5):8)*(NOSP(V.s?langOfSeg(V.s):speakLang())?0.75:1);
+ const secs=V.segLen/16000,base=Math.max(250,(+cfg.sil||450)-(cfg.fast!==false&&(+cfg.sil||450)===450?120:0)),silMs=secs<2.5?base:secs<5?Math.min(base,300):Math.min(base,200);
+ const maxSec=(sttNow==='local'?(asrDev==='webgpu'?7:5.5):(cfg.fast!==false?(listenActive()?5:5.5):8))*(NOSP(V.s?langOfSeg(V.s):speakLang())?0.75:1);
  if(V.sil>=silMs*16*(vadReady?1:1.4)){flushVad();return}
  if(secs>=maxSec){cutVad();return}
  maybeInterim()}
@@ -1313,7 +1328,12 @@ function cutVad(){const n=V.seg.length,from=Math.max(8,n-47);let k=n-4,mv=9;for(
  const ns=newSeg(s.who);ns.wait=true;ns.lang=s.lang;ns.detLang=s.detLang;ns.detDur=s.detDur;V.s=ns;paint(ns);log(`cut at ${(head.length*512/16000).toFixed(1)}s (p=${mv.toFixed(2)})`)}
 function concat(chunks){let n=0;for(const c of chunks)n+=c.length;const o=new Float32Array(n);let k=0;for(const c of chunks){o.set(c,k);k+=c.length}return o}
 let finalsPending=0,lagDrop=0;
-function maybeInterim(){if(sttNow!=='local'||!cfg.interim||!V.s||asrInflight>0||finalsPending>0)return;
+const gsLog=[];
+function groqInterim(){const s=V.s;if(!s||s.gInt||cfg.fast===false||V.segLen<16000*2.6||gsActive>0||Date.now()<gsHold)return;
+ const now=Date.now();while(gsLog.length&&now-gsLog[0]>60000)gsLog.shift();if(gsLog.length>=12)return;
+ s.gInt=true;const lang=s.lang!=='auto'?s.lang:(s.conv?'auto':autoHint());
+ groqSTT(concat(V.seg),lang,s.who,'').then(j=>{const t=String(j&&j.text||'').trim();if(!t||s.final||V.s!==s||HALL.test(t)||HALL_IN.test(t))return;s.wait=false;s.src=t;paint(s);interimTr(s)}).catch(()=>{})}
+function maybeInterim(){if(sttNow==='groq'){groqInterim();return}if(sttNow!=='local'||!cfg.interim||!V.s||asrInflight>0||finalsPending>0)return;
  const now=performance.now(),gap=asrDev==='webgpu'?450:900;if(V.segLen<9600||now-V.lastInt<gap||asrRtf>0.6)return;
  V.lastInt=now;const s=V.s,lang=s.lang==='auto'?(s.detLang||(s.conv?'auto':autoHint())):s.lang,dur=V.segLen;localASR(concat(V.seg),lang,s.conv?pairCands():null).then(m=>{if(lang==='auto'&&m.lang&&!m.err){s.detLang=m.lang;s.detDur=dur}if(s.final||V.s!==s||!m.text||HALL.test(m.text))return;s.wait=false;s.src=m.text;paint(s);interimTr(s)})}
 function flushVad(){if(!V.on)return;if(V.s)V.s.eng=sttNow;const s=V.s,chunks=V.seg,sil=V.sil,len=V.segLen,pmax=vadReady?Math.max(0,...V.probs.map(p=>+p||0)):1;Object.assign(V,{on:false,seg:[],probs:[],segLen:0,sil:0,s:null});
@@ -1326,15 +1346,19 @@ let backlogWarned=false,stickyN=0,autoCount=0;
 /* 같은 언어가 연속되면 판별 생략(영어면 Moonshine 사용), 3문장마다 재확인 */
 function autoHint(){if(cfg.src!=='auto'||!lastThemLang)return 'auto';return stickyN>=2&&autoCount%3!==0?lastThemLang:'auto'}
 const gSlot=()=>new Promise(r=>{if(gAct<2){gAct++;r()}else gWait.push(r)}),gFree=()=>{const n=gWait.shift();if(n)n();else gAct--};
-async function groqSTT(pcm,lang,who,prev){if(keyBad(cfg.qKey))throw new Error('Groq API 키 형식 오류 — 설정에서 다시 입력');
+let gsActive=0,gsHold=0;const gsWait=[];
+async function gsSlot(){for(;;){const w=gsHold-Date.now();if(w>0){await new Promise(r=>setTimeout(r,w));continue}if(gsActive<2){gsActive++;return}await new Promise(r=>gsWait.push(r))}}
+function gsFree(){gsActive=Math.max(0,gsActive-1);const r=gsWait.shift();if(r)r()}
+async function groqSTT(pcm,lang,who,prev){gsLog.push(Date.now());await gsSlot();try{return await groqSTT0(pcm,lang,who,prev)}finally{gsFree()}}
+async function groqSTT0(pcm,lang,who,prev){if(keyBad(cfg.qKey))throw new Error('Groq API 키 형식 오류 — 설정에서 다시 입력');
  for(let at=0;at<4;at++){const fd=new FormData();fd.append('file',toWav(pcm,16000),'a.wav');fd.append('model',cfg.qStt.trim());if(lang!=='auto')fd.append('language',L(lang).w);fd.append('response_format','verbose_json');fd.append('temperature','0');
   const terms=glossPairs().map(p=>(who==='me'?myLang():srcNow())===cfg.tgt?p[1]:p[0]).join(', '),pr=((terms?terms+'. ':'')+prev).slice(-220);if(pr)fd.append('prompt',pr);
   let r;try{r=await fetchT('https://api.groq.com/openai/v1/audio/transcriptions',{method:'POST',headers:{Authorization:'Bearer '+cfg.qKey},body:fd},15000)}
   catch(e){log('groq '+(e.name==='AbortError'?'timeout':'network')+' (retry)');if(at<1)continue;throw new Error(e.name==='AbortError'?'Groq 응답 지연(15초 초과) — 건너뜀':'Groq 연결 실패')}
-  if(r.status===429||r.status>=500){const ra=Math.min(12,Math.max(1,+(r.headers.get('retry-after')||2)));log(`groq ${r.status} → ${ra}s 후 재시도`);if(r.status===429)status(`Groq 무료 한도 — ${ra}초 대기 후 재시도`);await new Promise(x=>setTimeout(x,ra*1000));continue}
+  if(r.status===429||r.status>=500){const ra=Math.min(12,Math.max(1,+(r.headers.get('retry-after')||2)));log(`groq ${r.status} → ${ra}s 후 재시도`);if(r.status===429)gsHold=Math.max(gsHold,Date.now()+ra*1000);if(r.status===429)status(`Groq 무료 한도 — ${ra}초 대기 후 재시도`);await new Promise(x=>setTimeout(x,ra*1000));continue}
   const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(`Groq STT ${r.status}: ${(j.error&&j.error.message||'').slice(0,120)}`);return j}
  throw new Error('Groq 요청 한도 초과 — 잠시 후 자동 재개. 계속되면 로컬 AI 사용 권장')}
-function transcribeFinal(s,pcm){if((s.eng||sttNow)==='local'&&finalsPending>=3){lagDrop++;log(`로컬 AI가 말 속도를 못 따라감 → 밀린 구간 1개 건너뜀(누적 ${lagDrop})`);if(lagDrop===1||lagDrop%10===0)toast('이 기기의 로컬 AI가 말 속도를 못 따라가 일부를 건너뜀 — 설정 › AI에 무료 Groq 키를 넣으면 해결됨',{label:'설정 열기',fn:()=>openCfg()});dropSeg(s);return}if(finalsPending>=4&&!backlogWarned){backlogWarned=true;toast(`인식 처리가 밀리는 중 — ${sttNow==='groq'?'Groq 무료 한도에 걸렸을 수 있음. 잠시 후 자동으로 따라잡음':'설정에서 Whisper Tiny 또는 Groq Whisper(무료 키)를 쓰면 빨라짐'}`)}
+function transcribeFinal(s,pcm){pcmStat.seg++;if((s.eng||sttNow)==='local'&&finalsPending>=3){lagDrop++;log(`로컬 AI가 말 속도를 못 따라감 → 밀린 구간 1개 건너뜀(누적 ${lagDrop})`);if(lagDrop===1||lagDrop%10===0)toast('이 기기의 로컬 AI가 말 속도를 못 따라가 일부를 건너뜀 — 설정 › AI에 무료 Groq 키를 넣으면 해결됨',{label:'설정 열기',fn:()=>openCfg()});dropSeg(s);return}if(finalsPending>=4&&!backlogWarned){backlogWarned=true;toast(`인식 처리가 밀리는 중 — ${sttNow==='groq'?'Groq 무료 한도에 걸렸을 수 있음. 잠시 후 자동으로 따라잡음':'설정에서 Whisper Tiny 또는 Groq Whisper(무료 키)를 쓰면 빨라짐'}`)}
  const secs=(pcm.length/16000).toFixed(1),eng=s.eng||sttNow,who=s.who,lang=s.lang!=='auto'?s.lang:(s.detLang&&s.detDur>=24000)?s.detLang:s.conv?'auto':(finalsPending>=2&&lastThemLang)?lastThemLang:autoHint();finalsPending++;if(s.lang==='auto')autoCount++;
  s.proc=true;paint(s);const t0=performance.now(),prev=(()=>{const p=segs.filter(x=>x.final&&!x.hallFix).slice(-1)[0];if(!p||!p.src||p.who!==s.who||Date.now()-(p.tEnd||0)>20000)return '';if(s.lang&&s.lang!=='auto'&&p.lang&&p.lang!=='auto'&&p.lang!==s.lang)return '';return p.src.replace(/[\p{P}\s]/gu,'').length>=6?p.src:''})();
  const job=(async()=>{if(eng==='local'){const m=await localASR(pcm,lang,s.conv?pairCands():null);if(m.err)throw new Error('로컬 AI: '+m.err);return {text:m.text,det:m.lang||''}}
@@ -1370,7 +1394,7 @@ async function lockScreen(){try{wake=await navigator.wakeLock.request('screen');
 function prewarm(){if((cfg.tr==='auto'||cfg.tr==='chrome')&&cfg.src!=='auto'){chromeTr(cfg.src,cfg.tgt);chromeTr(cfg.tgt,cfg.src)}if('speechSynthesis' in self)speechSynthesis.getVoices()}
 let shareOk=false;
 function shareGuide(msg){const d=$('#shareHelp');d.querySelector('.hint').textContent=msg||'다음에 열리는 공유 창에서 아래 순서로 선택하면 됨.';d.returnValue='';if(!d.open)d.showModal()}
-async function start(){if(cfg.input==='tab'&&!cfg.shareSkip&&!shareOk){shareGuide();return}shareOk=false;
+async function start(){if(cfg.input==='tab'&&!cfg.shareSkip&&!shareOk){shareGuide();return}shareOk=false;pcmAt=Date.now();pcmZeroAt=0;pcmStat={n:0,max:0,zero:0,seg:0,t:Date.now()};
  const env=envIssues();if(env.block){banner(env.msgs);toast(env.msgs[0]);return}
  running=true;paused=false;document.body.classList.add('live');setRunUI(true);setTimeout(detectPhones,800);if(!sess.start)sess.start=Date.now();sess.runStart=Date.now();
  let stage=cfg.input==='tab'?'screen':'mic';
@@ -1447,7 +1471,8 @@ function liveMine(){clearTimeout(liveT);if(!meLive())return;const ready=[];
  ready.forEach(x=>x.spoken=true);meBatch=meBatch.filter(x=>!x.spoken);const ok=ready.filter(x=>x.tgt!=='(번역 실패)'&&!x.flip);if(!ok.length)return;
  ok.forEach(x=>rowsOf(x).forEach(r=>r.classList.add('spoken')));const text=ok.map(x=>x.tgt).join(' ');log(`말하기 실시간 → ${ok.length}구절 (${L(otherLang()).n})`);msPush(text)}
 function msPush(text){if(!text)return;MSQ.push({text,lang:otherLang(),sex:mySex()});msNext()}
-function msNext(){if(msBusy)return;const it=MSQ.shift();if(!it){return}msBusy=true;if((cfg.sayDev||'')===(cfg.listen==='on'?cfg.listenDev||'':''))LSQ.length=0;
+let msAt=0;
+function msNext(){if(msBusy&&Date.now()-msAt>25000){log('말하기 읽기: 완료 신호 없음 → 다음으로');msBusy=false;holdInput(false)}if(msBusy)return;const it=MSQ.shift();if(!it){return}msBusy=true;msAt=Date.now();if((cfg.sayDev||'')===(cfg.listen==='on'?cfg.listenDev||'':''))LSQ.length=0;
  const bcp=L(it.lang).sp,mic=running&&cfg.input==='mic'&&!noEchoOut();ttsRecent.push({t:Date.now(),x:normTxt(it.text)});ttsRecent=ttsRecent.filter(r=>Date.now()-r.t<30000);
  if(mic&&!paused){if(cur&&cur.who==='me'&&cur.src){const c=cur;cur=null;finalize(c,c.src)}holdInput(true)}
  const done=()=>{msBusy=false;if(MSQ.length){setTimeout(msNext,40);return}if(mic)setTimeout(()=>{if(!msBusy)holdInput(false)},250);setTimeout(listenNext,300)};
@@ -1554,7 +1579,7 @@ let audioAt=0,pkStart=0,pkNoAudio=false,pocket=false,pkPaused=false,pkAudio=null
 const NATIVE=!!self.WarpsNative;
 function pkSilence(){const n=8000,b=new ArrayBuffer(44+n),v=new DataView(b),w=(o,t)=>[...t].forEach((c,i)=>v.setUint8(o+i,c.charCodeAt(0)));w(0,'RIFF');v.setUint32(4,36+n,true);w(8,'WAVEfmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,8000,true);v.setUint32(28,8000,true);v.setUint16(32,1,true);v.setUint16(34,8,true);w(36,'data');v.setUint32(40,n,true);new Uint8Array(b,44).fill(128);return URL.createObjectURL(new Blob([b],{type:'audio/wav'}))}
 function pkSay(t){try{if(!('speechSynthesis' in self))return;ttsRecent.push({t:Date.now(),x:normTxt(t)});const u=new SpeechSynthesisUtterance(t);u.lang='ko-KR';u.rate=1.15;speechSynthesis.speak(u)}catch(_){}}
-function pkCheck(){if(!pocket||!running||pkPaused||sttNow==='web')return;const quiet=Date.now()-Math.max(audioAt,pkStart);if(quiet>10000&&!pkNoAudio){pkNoAudio=true;log('주머니: 10초 넘게 소리 입력 없음');pkSay('소리가 들어오지 않습니다. 앱을 열어 확인해 주세요')}else if(quiet<2000&&pkNoAudio){pkNoAudio=false;log('주머니: 소리 입력 복구')}}
+function pkCheck(){if(!pocket||!running||pkPaused||sttNow==='web')return;const quiet=Date.now()-Math.max(self.WarpsNative?pcmAt:audioAt,pkStart);if(quiet>10000&&!pkNoAudio){pkNoAudio=true;log('주머니: 10초 넘게 소리 입력 없음');pkSay('소리가 들어오지 않습니다. 앱을 열어 확인해 주세요')}else if(quiet<2000&&pkNoAudio){pkNoAudio=false;log('주머니: 소리 입력 복구')}}
 function pkUI(){pkCheck();const d=new Date(),c=$('#pkClock');if(c)c.textContent=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
  const st=$('#pkStat');if(st){const off=!running||pkPaused;st.classList.toggle('off',off);st.textContent=!running?'정지됨':pkNoAudio?'소리 입력 없음 — 마이크/입력 설정 확인':pkPaused?'일시정지 — 이어폰 버튼 1번으로 재개':convActive?`대화 모드 · ${L(myLang()).n} ⇄ ${L(otherLang()).n}`:speaker==='me'?`말하기 · ${L(myLang()).n} → ${L(otherLang()).n}`:`통역 중 · ${L(srcNow()).n} → ${L(cfg.tgt).n}`}
  try{if(navigator.mediaSession&&pocket&&!NATIVE)navigator.mediaSession.playbackState=pkPaused?'paused':'playing'}catch(_){}
@@ -1594,7 +1619,7 @@ if(NATIVE){setInterval(pkUI,3000);setTimeout(()=>{if(!qOk())toast('앱: 무료 G
    - 질문: 버튼(또는 이어폰 2번)을 누르고 말하면 내 언어로 인식 → 말을 멈추면 화면과 함께 AI에 질문 → 답을 표시·읽기
    - 화면을 손가락으로 누르면 그 위치를 빨간 원으로 표시해 "이게 뭐야?" 질문
    - AI: Gemini 키가 있으면 Gemini(글자 위치 정확), 없으면 Groq 비전 모델 */
-let visOn=false,visStream=null,visT=0,visHearT=0,visBusy=false,visNext=0,visGap=0,visRef=null,visLastAt=0,visFacing='environment',
+let visNoThink=false,visOn=false,visStream=null,visT=0,visHearT=0,visBusy=false,visNext=0,visGap=0,visRef=null,visLastAt=0,visFacing='environment',
  visCollect=false,visQText='',visQT=0,visQMax=0,visMarkPt=null,visLastAns='',visNoReason=false,visModelIdx=0,visSeen=new Map(),visAudio=null;
 const visProv=()=>!keyBad(cfg.gKey)?'gemini':!keyBad(cfg.qKey)?'groq':'';
 const visSmall=document.createElement('canvas');visSmall.width=48;visSmall.height=36;
@@ -1602,14 +1627,20 @@ function visStat(t){const e=$('#visStat');if(e)e.textContent=t}
 function visDiff(){const v=$('#visVid');if(!v.videoWidth)return 0;const c=visSmall.getContext('2d',{willReadFrequently:true});c.drawImage(v,0,0,48,36);
  const d=c.getImageData(0,0,48,36).data,g=new Uint8Array(48*36);for(let i=0;i<g.length;i++)g[i]=(d[i*4]*3+d[i*4+1]*6+d[i*4+2])/10;
  if(!visRef)return 1;let sum=0;for(let i=0;i<g.length;i++)sum+=Math.abs(g[i]-visRef[i]);visDiff.cur=g;return sum/g.length/255}
-function visGrab(mark){const v=$('#visVid'),W=v.videoWidth,H=v.videoHeight;if(!W)return null;const k=Math.min(1,1024/Math.max(W,H)),c=document.createElement('canvas');c.width=Math.round(W*k);c.height=Math.round(H*k);
+function visGrab(mark){const v=$('#visVid'),W=v.videoWidth,H=v.videoHeight;if(!W)return null;const k=Math.min(1,896/Math.max(W,H)),c=document.createElement('canvas');c.width=Math.round(W*k);c.height=Math.round(H*k);
  const x=c.getContext('2d');x.drawImage(v,0,0,c.width,c.height);if(mark){x.lineWidth=Math.max(4,c.width/160);x.strokeStyle='#ff2a2a';x.beginPath();x.arc(mark.x*c.width,mark.y*c.height,Math.max(28,c.width/18),0,Math.PI*2);x.stroke()}
  const g=visSmall.getContext('2d',{willReadFrequently:true});g.drawImage(v,0,0,48,36);const d=g.getImageData(0,0,48,36).data,ref=new Uint8Array(48*36);for(let i=0;i<ref.length;i++)ref[i]=(d[i*4]*3+d[i*4+1]*6+d[i*4+2])/10;visRef=ref;
- return c.toDataURL('image/jpeg',0.72).split(',')[1]}
-async function visionLLM(prompt,b64,json){const pv=visProv();
- if(pv==='gemini'){const r=await fetchT(`https://generativelanguage.googleapis.com/v1beta/models/${cfg.gModel.trim()}:generateContent`,{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':cfg.gKey},
-   body:JSON.stringify({contents:[{role:'user',parts:[{inline_data:{mime_type:'image/jpeg',data:b64}},{text:prompt}]}],generationConfig:Object.assign({temperature:0.2},json?{responseMimeType:'application/json'}:{})})},25000);
-  const j=await r.json().catch(()=>({}));if(!r.ok){const e=new Error(`Gemini ${r.status}: ${(j.error&&j.error.message||'').slice(0,120)}`);e.code=r.status;throw e}
+ return c.toDataURL('image/jpeg',0.7).split(',')[1]}
+async function visionLLM(prompt,b64,json,onText){const pv=visProv();
+ if(pv==='gemini'){const gc=Object.assign({temperature:0.2},json?{responseMimeType:'application/json'}:{},visNoThink?{}:{thinkingConfig:{thinkingLevel:'MINIMAL'}});
+  const body=JSON.stringify({contents:[{role:'user',parts:[{inline_data:{mime_type:'image/jpeg',data:b64}},{text:prompt}]}],generationConfig:gc});
+  if(onText){const c=new AbortController(),to=setTimeout(()=>c.abort(),25000);let idle=0;const alive=()=>{clearTimeout(idle);idle=setTimeout(()=>c.abort(),8000)};let acc='';
+   try{alive();const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${cfg.gModel.trim()}:streamGenerateContent?alt=sse`,{method:'POST',signal:c.signal,headers:{'Content-Type':'application/json','x-goog-api-key':cfg.gKey},body});
+    if(!r.ok){const j=await r.json().catch(()=>({}));const m=(j.error&&j.error.message||'');if(r.status===400&&/thinking/i.test(m)&&!visNoThink){visNoThink=true;return visionLLM(prompt,b64,json,onText)}const e=new Error(`Gemini ${r.status}: ${m.slice(0,120)}`);e.code=r.status;throw e}
+    await readSSE(r,d=>{try{const j=JSON.parse(d);acc+=((j.candidates&&j.candidates[0]&&j.candidates[0].content&&j.candidates[0].content.parts)||[]).map(p=>p.text||'').join('');onText(acc)}catch(_){}},alive);return acc}
+   finally{clearTimeout(to);clearTimeout(idle)}}
+  const r=await fetchT(`https://generativelanguage.googleapis.com/v1beta/models/${cfg.gModel.trim()}:generateContent`,{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':cfg.gKey},body},25000);
+  const j=await r.json().catch(()=>({}));if(!r.ok&&r.status===400&&/thinking/i.test(j.error&&j.error.message||'')&&!visNoThink){visNoThink=true;return visionLLM(prompt,b64,json)}if(!r.ok){const e=new Error(`Gemini ${r.status}: ${(j.error&&j.error.message||'').slice(0,120)}`);e.code=r.status;throw e}
   return ((j.candidates&&j.candidates[0]&&j.candidates[0].content&&j.candidates[0].content.parts)||[]).map(p=>p.text||'').join('')}
  if(pv==='groq'){const models=[...new Set([(cfg.visModel||'').trim()||'qwen/qwen3.8-27b','qwen/qwen3.8-27b','qwen/qwen3.6-27b','meta-llama/llama-4-scout-17b-16e-instruct'])];
   for(let i=visModelIdx;i<models.length;i++){const body=Object.assign({model:models[i],temperature:0.2,max_completion_tokens:json?900:500,messages:[{role:'user',content:[{type:'text',text:prompt},{type:'image_url',image_url:{url:'data:image/jpeg;base64,'+b64}}]}]},json?{response_format:{type:'json_object'}}:{},visNoReason?{}:{reasoning_effort:'none'});
@@ -1629,13 +1660,13 @@ async function visAnalyze(kind,question,mark){if(!visOn)return;const pv=visProv(
    const prompt=`You are the vision assistant of smart AI glasses. The user reads ${me}.\nReturn ONLY JSON: {"scene":"${cfg.visAutoS?`one short sentence in ${me} (max 18 words) describing what is visible`:''}","texts":[${cfg.visAutoT?`{"src":"legible text exactly as written","tgt":"natural ${me} translation","box":[ymin,xmin,ymax,xmax]}`:''}]}\n${cfg.visAutoT?`Rules for texts: only clearly legible text (signs, menus, labels, screens, documents); merge lines that belong to the same sign/item; max 10 items; box normalized 0-1000; skip text already in ${me}; [] if none.`:'texts must be [].'}`;
    const o=parseJSON(await visionLLM(prompt,b64,true));visRender(o);visStat(`${pv==='gemini'?'Gemini':'Groq'} 비전 · ${((performance.now()-t0)/1000).toFixed(1)}초`)}
   else{const prompt=`You are the assistant inside smart AI glasses, looking through the user's camera (this image).${mark?' The user pointed at the spot marked with a red circle.':''}\nRecent conversation around the user:\n${visCtx()||'(none)'}\n\nUser's request (in ${me}): ${question}\n\nAnswer in ${me}, concise and practical (max 4 short sentences, no markdown). If the request asks to translate text, list each item as "original → ${me} translation".`;
-   const a=(await visionLLM(prompt,b64,false)).replace(/\*\*/g,'').trim();visLastAns=a;$('#visAns').textContent=a||'(답변 없음)';visStat(`답변 · ${((performance.now()-t0)/1000).toFixed(1)}초`);
+   const a=(await visionLLM(prompt,b64,false,pv==='gemini'?t=>{$('#visAns').textContent=t.replace(/\*\*/g,'')}:null)).replace(/\*\*/g,'').trim();visLastAns=a;$('#visAns').textContent=a||'(답변 없음)';visStat(`답변 · ${((performance.now()-t0)/1000).toFixed(1)}초`);
    log('비전 질문: '+question.slice(0,40)+' → '+a.slice(0,60));if(a&&cfg.visSpeak)listenPush(a,'',myLang())}
   visGap=0;visLastAt=Date.now()}
  catch(e){if(e.code===429){visGap=Math.min(20000,(visGap||3000)*2);visStat(`AI 무료 한도 — ${Math.round(visGap/1000)}초 뒤 재시도`)}else{visStat('분석 오류: '+e.message.slice(0,80));log('vision: '+e.message)}if(kind!=='auto')$('#visAns').textContent='분석 실패 — '+e.message.slice(0,100)}
- finally{visBusy=false;visNext=Date.now()+Math.max(visProv()==='gemini'?4000:3000,visGap)}}
+ finally{visBusy=false;visNext=Date.now()+Math.max(visProv()==='gemini'?2200:1800,visGap)}}
 function visBoxRect(b){const v=$('#visVid'),W=v.videoWidth,H=v.videoHeight,cw=v.clientWidth,ch=v.clientHeight;if(!W||!Array.isArray(b)||b.length<4)return null;
- const k=Math.min(cw/W,ch/H),dw=W*k,dh=H*k,ox=v.offsetLeft+(cw-dw)/2,oy=v.offsetTop+(ch-dh)/2,c=x=>Math.max(0,Math.min(1000,+x||0))/1000;
+ const k=Math.max(cw/W,ch/H),dw=W*k,dh=H*k,ox=v.offsetLeft+(cw-dw)/2,oy=v.offsetTop+(ch-dh)/2,c=x=>Math.max(0,Math.min(1000,+x||0))/1000;
  const y0=c(b[0]),x0=c(b[1]),y1=c(b[2]),x1=c(b[3]);if(y1<=y0||x1<=x0)return null;return {l:ox+x0*dw,t:oy+y0*dh,w:(x1-x0)*dw,h:(y1-y0)*dh}}
 function visRender(o){const now=Date.now();
  if(cfg.visAutoS&&o.scene){const sc=$('#visScene');sc.textContent=String(o.scene).trim();sc.classList.remove('dim')}
@@ -1644,7 +1675,7 @@ function visRender(o){const now=Date.now();
  if(!items.length){if(!ul.querySelector('li:not(.dim)'))ul.innerHTML='<li class="dim">글자를 비추면 번역이 나옴</li>';return}
  const fresh=[];ul.innerHTML=items.map(t=>{const k=normTxt(t.src),isNew=!visSeen.has(k)||now-visSeen.get(k)>60000;visSeen.set(k,now);if(isNew)fresh.push(t.tgt);return `<li${isNew?' class="new"':''}><b>${esc(t.tgt)}</b><small>${esc(t.src)}</small></li>`}).join('');
  for(const t of items){const r=visBoxRect(t.box);if(!r||r.w<14||r.h<8)continue;const d=document.createElement('div');d.textContent=t.tgt;
-  d.style.cssText=`left:${r.l}px;top:${r.t}px;min-width:${r.w}px;max-width:${Math.max(r.w,180)}px;font-size:${Math.max(11,Math.min(22,r.h*0.62))}px`;lab.appendChild(d)}
+  r.l=Math.max(2,Math.min(r.l,innerWidth-60));r.t=Math.max(52,Math.min(r.t,innerHeight-40));d.style.cssText=`left:${r.l}px;top:${r.t}px;min-width:${r.w}px;max-width:${Math.max(r.w,180)}px;font-size:${Math.max(11,Math.min(22,r.h*0.62))}px`;lab.appendChild(d)}
  clearTimeout(visRender.t);visRender.t=setTimeout(()=>{lab.querySelectorAll('div').forEach(d=>d.style.opacity='0')},9000);
  if(cfg.visReadT&&fresh.length)listenPush(fresh.slice(0,4).join('. '),'',myLang())}
 function visHear(){if(!visOn)return;const list=segs.filter(x=>x.final&&x.who!=='me'&&x.tgt&&x.tgt!=='(번역 실패)').slice(-4).reverse();
@@ -1652,17 +1683,17 @@ function visHear(){if(!visOn)return;const list=segs.filter(x=>x.final&&x.who!=='
  if(h&&ul.innerHTML!==h)ul.innerHTML=h;const sp=segs.find(x=>!x.final&&x.who!=='me'&&x.src);if(sp&&!h)ul.innerHTML=`<li><small>${esc(sp.src)}</small></li>`}
 function visLoop(){if(!visOn||document.hidden)return;const v=$('#visVid');if(!v.videoWidth||visBusy||visCollect)return;
  if(!(cfg.visAutoT||cfg.visAutoS)||!visProv())return;const now=Date.now();if(now<visNext)return;
- const d=visDiff();if(d>0.055||now-visLastAt>20000)visAnalyze('auto')}
+ const d=visDiff();if(d>0.04||now-visLastAt>20000)visAnalyze('auto')}
 async function visCam(){if(visStream)visStream.getTracks().forEach(t=>t.stop());visStream=null;
  visStream=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:{ideal:visFacing},width:{ideal:1280},height:{ideal:720}}});
  const v=$('#visVid');v.srcObject=visStream;await v.play().catch(()=>{});visRef=null}
-async function visOpen(){if(visOn)return;$('#moreMenu').hidden=true;$('#vision').hidden=false;visOn=true;visStat('카메라 준비 중…');
+async function visOpen(){if(visOn)return;$('#moreMenu').hidden=true;$('#vision').hidden=false;$('#vision').classList.toggle('nopanel',!!cfg.visNoPanel);visOn=true;visStat('카메라 준비 중…');
  ['visAutoT','visAutoS','visSpeak'].forEach(k=>{const el=$('#'+k);el.checked=!!cfg[k];el.onchange=()=>{cfg[k]=el.checked;save();if(k!=='visSpeak'){visRef=null;visNext=0}}});
  try{await visCam()}catch(e){visStat('카메라를 열 수 없음: '+(e.name==='NotAllowedError'?'카메라 권한 허용 필요':e.message));log('vision cam: '+e.message)}
  unlockTTS();if(!running){try{await start()}catch(_){}}
  const pv=visProv();visStat(pv?`${pv==='gemini'?'Gemini':'Groq'} 비전 준비됨 · 화면이 바뀌면 자동 분석`:'AI 키가 없어 화면 분석은 꺼짐 — 들리는 말 번역만 동작');
  if(!cfg.visTold){cfg.visTold=true;save();toast(`비전 모드: 카메라 화면이 ${pv==='gemini'?'Gemini':pv==='groq'?'Groq':'AI'}로 전송되어 분석됨 · 화면을 누르면 그 부분을 물어볼 수 있음`)}
- clearInterval(visT);visT=setInterval(visLoop,800);clearInterval(visHearT);visHearT=setInterval(visHear,600);visNext=Date.now()+600;
+ clearInterval(visT);visT=setInterval(visLoop,450);clearInterval(visHearT);visHearT=setInterval(visHear,600);visNext=Date.now()+600;
  if(!pocket&&!NATIVE&&navigator.mediaSession){try{if(!visAudio){visAudio=new Audio(pkSilence());visAudio.loop=true}visAudio.play().catch(()=>{});const ms=navigator.mediaSession,set=(a,f)=>{try{ms.setActionHandler(a,f)}catch(_){}};
   set('play',()=>pkAct('describe','key'));set('pause',()=>pkAct('describe','key'));set('nexttrack',()=>pkAct('talk','key'));set('previoustrack',()=>pkAct('repeat','key'))}catch(_){}}
  log('비전 모드 켜짐 ('+(pv||'AI 없음')+')')}
@@ -1679,12 +1710,18 @@ function visAskEnd(){if(!visCollect)return;clearTimeout(visQT);clearTimeout(visQ
 {const ask=$('#visAsk');let down=0;ask.addEventListener('pointerdown',e=>{e.preventDefault();down=Date.now();if(visCollect){visAskEnd();down=0}else visAskStart()});
  ask.addEventListener('pointerup',()=>{if(down&&Date.now()-down>600&&visCollect)visAskEnd();down=0});
  $('#vision').querySelector('.vis-chips').addEventListener('click',e=>{const b=e.target.closest('button[data-q]');if(b)visAnalyze('ask',b.dataset.q,visMarkPt)});
- $('#visVid').addEventListener('click',e=>{const v=$('#visVid'),W=v.videoWidth,H=v.videoHeight;if(!W)return;const r=v.getBoundingClientRect(),k=Math.min(r.width/W,r.height/H),dw=W*k,dh=H*k,ox=(r.width-dw)/2,oy=(r.height-dh)/2;
+ $('#visVid').addEventListener('click',e=>{const v=$('#visVid'),W=v.videoWidth,H=v.videoHeight;if(!W)return;const r=v.getBoundingClientRect(),k=Math.max(r.width/W,r.height/H),dw=W*k,dh=H*k,ox=(r.width-dw)/2,oy=(r.height-dh)/2;
   const x=(e.clientX-r.left-ox)/dw,y=(e.clientY-r.top-oy)/dh;if(x<0||x>1||y<0||y>1)return;visMarkPt={x,y};const m=$('#visMark');m.style.left=(e.clientX-r.left)+'px';m.style.top=(e.clientY-r.top)+'px';m.hidden=false;
   visAnalyze('ask','빨간 원으로 표시한 부분이 무엇인지 짧게 설명하고, 글자가 있으면 번역해 줘',visMarkPt);setTimeout(()=>{if(!visCollect){m.hidden=true;visMarkPt=null}},6000)});
- $('#visClose').onclick=visClose;$('#visFlip').onclick=async()=>{visFacing=visFacing==='environment'?'user':'environment';try{await visCam()}catch(e){visStat('카메라 전환 실패: '+e.message)}};
+ $('#visClose').onclick=visClose;$('#visPanelBtn').onclick=()=>{const v=$('#vision');v.classList.toggle('nopanel');cfg.visNoPanel=v.classList.contains('nopanel');save()};$('#visFlip').onclick=async()=>{visFacing=visFacing==='environment'?'user':'environment';try{await visCam()}catch(e){visStat('카메라 전환 실패: '+e.message)}};
  $('#visionBtn').onclick=()=>visOpen();document.addEventListener('keydown',e=>{if(visOn&&e.key==='Escape')visClose()})}
 self.WARPS={vision:()=>visOpen(),stop:()=>{if(pocket)pocketOff();if(running)stop()},devs:detectPhones,toast:m=>toast(m),log:m=>log(m),act:pkAct,pocketOn,pocketOff,state:()=>({running,paused:pkPaused,pocket,talk:speaker==='me'})};
+if(!self.WarpsNative&&'speechSynthesis' in self){const ss=speechSynthesis,orig=ss.speak.bind(ss);
+ ss.speak=function(u){if(!u||!String(u.text||'').trim()){return orig(u)}const h=u.onend,he=u.onerror;let fired=false,t=0;
+  const fin=(f,e)=>{if(fired)return;fired=true;clearTimeout(t);if(f)try{f.call(u,e||{})}catch(_){}};
+  u.onend=e=>fin(h,e);u.onerror=e=>fin(he||h,e);
+  const est=4000+String(u.text).length*230/Math.max(0.5,+u.rate||1);t=setTimeout(()=>{if(!fired){log('음성 출력 완료 신호 없음('+Math.round(est/1000)+'초) → 다음으로');try{ss.cancel()}catch(_){}fin(h,{})}},est);
+  return orig(u)}}
 let ttsUnlocked=false;function unlockTTS(){if(ttsUnlocked||!('speechSynthesis' in self))return;ttsUnlocked=true;try{const u=new SpeechSynthesisUtterance(' ');u.volume=0;speechSynthesis.speak(u)}catch(_){}}
 $('#run').onclick=()=>{unlockTTS();if(running){stop();if(segs.filter(s=>s.final).length>=3)banner(['정지함 — 지금까지 내용을 회의록으로 정리해 .txt로 저장할 수 있음.'],{label:'회의록 만들기',fn:openMinutes})}else start()};
 $('#srcLang').onchange=e=>{cfg.src=e.target.value;relang()};
